@@ -1,0 +1,32 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+.eui-sidesheet-content {
+  @include flex-column-container();
+
+  .mat-mdc-card {
+    margin-bottom: 20px;
+  }
+}
+
+.imx-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.imx-no-results {
+  text-align: center;
+  margin: 20px 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    margin: 0;
+    font-size: 18px;
+    color: $black-9;
+  }
+}

@@ -1,0 +1,35 @@
+@import 'base/mixins';
+
+:host {
+  overflow: hidden;
+  height: 100%;
+}
+
+.data-explorer--groups > :nth-child(2) {
+  flex: 0 0 auto;
+}
+
+.imx-data-explorer-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+
+.data-explorer-table {
+  display: flex;
+  flex-direction: column;
+  > :first-child {
+    flex: 1 1 auto;
+  }
+}
+
+
+
+.hidden {
+  display: none;
+}
+
+imx-selected-elements {
+  margin-left: 10px;
+}

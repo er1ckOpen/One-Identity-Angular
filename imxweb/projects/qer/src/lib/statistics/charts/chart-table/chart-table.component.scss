@@ -1,0 +1,12 @@
+@import '../../stat-mixins.scss';
+
+:host {
+  .above {
+    display: flex;
+    justify-content: flex-end;
+
+    imx-data-source-toolbar {
+      width: 50%;
+    }
+  }
+}

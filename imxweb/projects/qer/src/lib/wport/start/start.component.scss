@@ -1,0 +1,35 @@
+@import 'base/variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+}
+
+.imx-flexible-tile-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-mdc-card {
+  width: $IMX_Tile_Width;
+  height: 108px;
+  overflow: auto;
+  padding: 0;
+  cursor: pointer;
+}
+
+.imx-tilebar-columns {
+  display: flex;
+  column-gap: 20px;
+}
+
+.imx-tilebar-columns ::ng-deep .imx-generic-tile,
+.imx-tilebar-columns ::ng-deep .imx-tile {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}

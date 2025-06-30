@@ -1,0 +1,40 @@
+<div class="imx-tab-content">
+  <div class="imx-tab-content-body">
+    <div class="imx-sidesheet-content__overflow imx-card-fill">
+      <mat-tab-group
+        mat-stretch-tabs="false"
+        *ngIf="canHavePrimaryMemberships() || canBeDynamic || isDynamic; else secondaryOnly"
+        class="imx-padding-top-20 imx-tab-header-indent"
+      >
+        <mat-tab *ngIf="canHavePrimaryMemberships()" [label]="'#LDS#Primary memberships' | translate">
+          <imx-primary-memberships class="imx-margin-20"></imx-primary-memberships>
+        </mat-tab>
+        <mat-tab [label]="'#LDS#Secondary memberships' | translate">
+          <imx-secondary-memberships></imx-secondary-memberships>
+        </mat-tab>
+        <mat-tab *ngIf="canBeDynamic">
+          <ng-template mat-tab-label>
+            <div [matTooltip]="(autoMembershipsValid ? '' : '#LDS#You have unsaved changes') | translate">
+              <eui-icon
+                *ngIf="!autoMembershipsValid"
+                icon="warning"
+                class="imx-dirty-indicator"
+                size="s"
+                [attr.aria-label]="'#LDS#You have unsaved changes.' | translate"
+              ></eui-icon>
+              <span translate>#LDS#Automatic memberships</span>
+            </div>
+          </ng-template>
+          <imx-dynamic-group [uidDynamicGroup]="uidDynamicGroup"></imx-dynamic-group>
+        </mat-tab>
+        <mat-tab *ngIf="isDynamic" [label]="'#LDS#Excluded members' | translate">
+          <imx-excluded-memberships></imx-excluded-memberships>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+
+<ng-template #secondaryOnly>
+  <imx-secondary-memberships></imx-secondary-memberships>
+</ng-template>

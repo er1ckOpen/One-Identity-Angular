@@ -1,0 +1,11 @@
+<div class="imx-editor-container" [ngClass]="{ 'imx-hidden': !!editor && !!cdr.column && !cdr.column.GetMetadata().CanSee() }">
+  <ng-template #viewcontainer></ng-template>
+  <div *ngIf="description" class="hint-container">
+    <imx-info-button [templateRef]="infoContent" [title]="infotitle"></imx-info-button>
+  </div>
+</div>
+<ng-template #infoContent>
+  <p class="description-data">
+    {{ description }}
+  </p>
+</ng-template>

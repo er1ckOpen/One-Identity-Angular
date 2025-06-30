@@ -1,0 +1,60 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "strictNullChecks": true,
+    "noImplicitOverride": false,
+    "esModuleInterop": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": false,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "paths": {
+      "aad": ["dist/aad"],
+      "aad/*": ["dist/aad/*"],
+      "aob": ["dist/aob"],
+      "aob/*": ["dist/aob/*"],
+      "apc": ["dist/apc"],
+      "apc/*": ["dist/apc/*"],
+      "att": ["dist/att"],
+      "att/*": [
+        "dist/att/*"
+      ],
+      "custom-open-consult": [
+        "./dist/custom-open-consult"
+      ],
+      "dpr": ["dist/dpr"],
+      "dpr/*": ["dist/dpr/*"],
+      "o3t": ["dist/o3t"],
+      "o3t/*": ["dist/o3t/*"],
+      "qbm": ["dist/qbm"],
+      "qbm/*": ["dist/qbm/*"],
+      "qer": ["dist/qer"],
+      "qer/*": ["dist/qer/*"],
+      "rps": ["dist/rps"],
+      "rps/*": ["dist/rps/*"],
+      "tsb": ["dist/tsb"],
+      "tsb/*": ["dist/tsb/*"]
+    },
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "es2022",
+    "lib": ["es2022", "dom"]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": false,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "strictNullInputTypes": false
+  }
+}

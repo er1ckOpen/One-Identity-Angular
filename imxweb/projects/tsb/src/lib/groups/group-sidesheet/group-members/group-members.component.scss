@@ -1,0 +1,26 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.imx-selection-toggle {
+  min-height: 40px;
+  display: flex;
+}
+
+.filled-cell {
+  width: 100% !important;
+}
+
+.mat-button-toggle-group {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .mat-button-toggle-group {
+    width: 100%;
+  }
+}

@@ -1,0 +1,30 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+
+button {
+  margin-left: 10px;
+}
+
+.imx-custom-property {
+  margin-bottom: 20px;
+}
+
+.imx-action-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.imx-description {
+  margin-bottom: 10px;
+}
+
+.imx-icon-new {
+  margin-right: 10px;
+}
+
+.imx-madatory-item {
+  color: $corbin-orange;
+}
+
+.imx-bulk-item-description {
+  flex: initial;
+}

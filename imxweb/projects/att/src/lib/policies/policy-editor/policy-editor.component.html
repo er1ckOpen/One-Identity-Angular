@@ -1,0 +1,74 @@
+<div class="imx-title">
+  <h3 class="imx-filter-header">{{ '#LDS#Heading Objects to be Attested by this Attestation Policy' | translate }}</h3>
+  <imx-selected-objects
+    [isTotal]="true"
+    testId="total-objects"
+    #totalCount
+    [filterSubject]="filterModel?.totalSelectedObjectsSubject"
+    [popupTitle]="'#LDS#Heading Objects Matching All Conditions' | translate"
+  >
+  </imx-selected-objects>
+</div>
+<eui-alert *ngIf="showWarning" class="imx-margin-vertical-30" type="warning" [condensed]="true" [colored]="true" [dismissable]="true">
+  <div>
+    {{
+      '#LDS#This policy affects many objects. Running this policy may take some time and generate notifications to many approvers.'
+        | translate
+    }}
+  </div>
+</eui-alert>
+<eui-alert *ngIf="isMissing" class="imx-margin-vertical-30" type="warning" [condensed]="true" [colored]="true" [dismissable]="true">
+  <div>
+    {{ mismatch | translate }}
+  </div>
+</eui-alert>
+
+<ng-container>
+  <ng-container *ngIf="parametersReady && filterModel.uidAttestationObject != null; else noPolicy">
+    <span class="imx-radio-group-caption" *ngIf="filterArray.controls.length > 1">{{
+      '#LDS#How many conditions must be met?' | translate
+    }}</span>
+    <mat-radio-group
+      class="imx-radio-group-flex-column imx-margin-top-15"
+      [formControl]="filterFormGroup.controls.concatenationType"
+      *ngIf="filterArray.controls.length > 1"
+    >
+      <mat-radio-button [value]="'AND'" data-imx-identifier="policy-editor-radio-and">
+        {{ '#LDS#All conditions have to be met.' | translate }}
+      </mat-radio-button>
+      <mat-radio-button [value]="'OR'" data-imx-identifier="policy-editor-radio-or">
+        {{ '#LDS#At least one condition has to be met.' | translate }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-accordion class="imx-accordion">
+      <imx-policy-filter-element
+        *ngFor="let control of filterArray.controls; let index = index"
+        [formGroup]="control"
+        [idForTest]="index.toString()"
+        (deleteFilter)="deleteCondition(index)"
+        (conditionTypeChanged)="selectedConditionTypeChanged(index, $event)"
+        (parameterChanged)="filterParameterChanged(index, $event)"
+      ></imx-policy-filter-element>
+    </mat-accordion>
+    <mat-error class="imx-small-error imx-margin-bottom-20" *ngIf="filterArray.errors?.nofilter">
+      {{ '#LDS#Add at least one condition.' | translate }}
+    </mat-error>
+    <mat-action-row class="imx-policy-actions imx-padding-right-0" *ngIf="!filterModel.policyFilterData?.IsReadOnly">
+      <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+      <button
+        [disabled]="filterModel?.uidAttestationObject == null || filterModel?.uidAttestationObject === ''"
+        (click)="addCondition()"
+        mat-stroked-button
+        data-imx-identifier="policy-editor-add-condition"
+      >
+        {{ (filterArray.controls.length > 0 ? '#LDS#Add another condition' : '#LDS#Add condition') | translate }}
+      </button>
+    </mat-action-row>
+  </ng-container>
+</ng-container>
+
+<ng-template #noPolicy>
+  <div *ngIf="filterModel?.policyFilterData?.IsReadOnly">
+    {{ '#LDS#No conditions are specified for this attestation policy.' | translate }}
+  </div>
+</ng-template>

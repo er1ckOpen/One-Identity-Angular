@@ -1,0 +1,27 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.imx-dialog-content {
+  @include flex-column-container($overflow: auto, $height: 100%);
+
+  > imx-fk-selector {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.imx-icon-large {
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  min-width: 32px;
+  min-height: 32px;
+}

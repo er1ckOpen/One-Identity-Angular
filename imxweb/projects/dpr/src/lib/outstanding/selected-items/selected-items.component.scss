@@ -1,0 +1,16 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden);
+  height: 100%;
+}
+
+.imx-sidesheet-content {
+  @include flex-column-container($overflow: hidden);
+}
+
+.object-type {
+  font-style: italic;
+  font-size: smaller;
+}

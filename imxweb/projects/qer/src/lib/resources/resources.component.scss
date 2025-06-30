@@ -1,0 +1,45 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+
+imx-data-table {
+  flex-grow: 1;
+}
+
+.imx-subtext {
+  font-size: smaller;
+  color: $black-b;
+}
+
+.imx-data-tree-container {
+  overflow: hidden;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-data-tree-container {
+      background: $color-gray-70 ;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-data-tree-container {
+      background: $color-gray-70;
+    }
+  }
+}

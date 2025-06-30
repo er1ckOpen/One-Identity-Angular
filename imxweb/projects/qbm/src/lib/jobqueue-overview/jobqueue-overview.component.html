@@ -1,0 +1,15 @@
+<div class="imx-jobqueue-container">
+  <mat-form-field appearance="fill">
+    <mat-label>
+      {{ '#LDS#Select queue' | translate }}
+    </mat-label>
+    <mat-select [(value)]="queue" (selectionChange)="updatePlot()" data-imx-identifier="jobqueue-overview-select-queue">
+      <mat-option *ngFor="let queue of queueNames" [value]="queue">
+        {{ queue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-card *ngIf="chartOptions" class="imx-card-fill">
+    <eui-billboard [options]="chartOptions" (chart)="onChart($event)"></eui-billboard>
+  </mat-card>
+</div>

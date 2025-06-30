@@ -1,0 +1,22 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+.data-explorer {
+  &.data-explorer--identities {
+    &.identities--fullscreen {
+      display: block;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .data-explorer-table ::ng-deep .mat-column-__Display {
+      max-width: 40vw;
+      word-wrap: break-word;
+    }
+  }
+}
+::ng-deep {
+  imx-report-button,
+  imx-report-button-ext {
+    display: none;
+  }
+}

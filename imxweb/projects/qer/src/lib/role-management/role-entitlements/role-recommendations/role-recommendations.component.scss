@@ -1,0 +1,30 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+.imx-data-table-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.subtext {
+  font-size: small;
+  font-style: italic;
+  color: $color-gray-40;
+  margin-bottom: 10px;
+}
+
+.imx-alertsub {
+  display: block;
+  margin-top: 1ex;
+}
+
+.imx-sidesheet-content__overflow {
+  flex: 1;
+}
+
+.imx-selected-items {
+  justify-self: flex-start;
+  margin: 0;
+  line-height: 36px;
+}

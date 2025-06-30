@@ -1,0 +1,41 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .imx-flex-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .imx-full-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  imx-help-contextual {
+    justify-content: end;
+  }
+
+  .eui-sidesheet-content.eui-sidesheet-content--no-padding-top {
+    padding-top: 0;
+  }
+
+  .eui-sidesheet-actions {
+    button:disabled:hover {
+      cursor: not-allowed;
+    }
+
+    .imx-icon-info {
+      margin-left: 5px;
+      cursor: auto;
+    }
+  }
+
+}

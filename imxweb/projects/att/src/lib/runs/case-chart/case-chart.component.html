@@ -1,0 +1,3 @@
+<div #chartWrapper class="imx-chart-container-full">
+  <eui-billboard *ngIf="chartData" [options]="chartData" (chart)="saveChart($event)"></eui-billboard>
+</div>

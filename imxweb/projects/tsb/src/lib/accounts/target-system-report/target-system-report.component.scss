@@ -1,0 +1,10 @@
+:host {
+  overflow: hidden;
+  display: flex;
+}
+
+.imx-content-card {
+  margin-top: 10px;
+  flex: 1 1 auto;
+  overflow: auto;
+}

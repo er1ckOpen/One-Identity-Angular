@@ -1,0 +1,27 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+
+  .imx-state-caption {
+    font-size: 12px;
+    padding-bottom: 5px;
+  }
+
+  .imx-dirty-indicator {
+    margin-left: 5px;
+  }
+  imx-ext {
+    height: 100%;
+  }
+}
+
+// Theming
+:host {
+  .imx-dirty-indicator {
+    color: $color-orange-60;
+  }
+
+  .imx-state-caption {
+    color: $color-gray-40;
+  }
+}

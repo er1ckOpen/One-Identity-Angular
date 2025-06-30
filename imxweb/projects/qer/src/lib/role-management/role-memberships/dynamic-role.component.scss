@@ -1,0 +1,31 @@
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.margin {
+  margin-bottom: 1em;
+}
+
+imx-sqlwizard {
+  margin-bottom: 1em;
+  display: block;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.imx-main-content {
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  .mat-mdc-card {
+    @include flex-column-container-fill();
+    margin: 0 20px 20px 20px;
+  }
+}

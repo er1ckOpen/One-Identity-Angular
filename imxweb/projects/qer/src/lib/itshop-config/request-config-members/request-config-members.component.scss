@@ -1,0 +1,9 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  .membership-view-toggle {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

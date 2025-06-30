@@ -1,0 +1,23 @@
+@import 'base/mixins';
+
+.eui-sidesheet-content {
+  @include flex-column-container($overflow: hidden, $height: inherit);
+}
+
+.imx-info-text {
+  margin-bottom: 15px;
+}
+
+span[bold] {
+  font-weight: 600;
+}
+
+.imx-info-grid {
+  display: flex;
+  flex-direction: row;
+  :first-child {
+    display: grid;
+    column-gap: 15px;
+    grid-template-columns: auto auto;
+  }
+}

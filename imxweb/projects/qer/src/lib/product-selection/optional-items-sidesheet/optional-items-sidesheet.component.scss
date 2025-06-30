@@ -1,0 +1,53 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  .eui-sidesheet-content {
+    @include flex-column-container($overflow: auto);
+  }
+
+  .service-tree-invisible {
+    display: none;
+  }
+  ::ng-deep .mat-checkbox-label {
+    line-height: 20px;
+  }
+
+  .imx-subtext {
+    font-size: smaller;
+    color: $color-gray-30;
+  }
+
+  .imx-menu-spacer {
+    flex-grow: 1;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+
+  .imx-selected-products {
+    margin: 0;
+    line-height: 36px;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    background-color: $color-gray-80;
+    color: $color-gray-0;
+    .eui-sidesheet-actions.mat-mdc-card.eui-sidesheet-actions--white {
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-100;
+    color: $color-gray-0;
+    .eui-sidesheet-actions.mat-mdc-card.eui-sidesheet-actions--white {
+      background-color: $color-gray-90;
+    }
+  }
+}

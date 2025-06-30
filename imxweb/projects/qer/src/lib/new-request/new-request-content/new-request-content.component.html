@@ -1,0 +1,49 @@
+<nav mat-tab-nav-bar mat-stretch-tabs="false" class="imx-nav-bar" [tabPanel]="tabPanel">
+  <a
+    mat-tab-link
+    *ngFor="let navLink of navLinks"
+    [routerLink]="navLink.link"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+    (click)="onSelectedTabChange(navLink)"
+  >
+    {{ navLink.title | translate }}
+  </a>
+  <span class="imx-spacer"></span>
+  <mat-slide-toggle
+    #catSlider
+    *ngIf="showCatSlider && selectedCategory?.HasChildren?.value"
+    (change)="onCatSliderChanged($event)"
+    [checked]="orchestration.includeChildCategories"
+    class="imx-tab-group-slider"
+  >
+    {{ '#LDS#Show products from child categories' | translate }}
+  </mat-slide-toggle>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+<router-outlet></router-outlet>
+<div class="imx-button-bar-transparent">
+  <ng-container *ngIf="!!selectionService.selectedProducts && selectionService.selectedProducts.length">
+    <imx-selected-elements
+      class="justify-start"
+      [selectedElements]="selectionService.selectedProductEntities"
+      [showDeselectAll]="true"
+      (openCustomSelectionDialog)="openSelected()"
+      (onDeselectAllClicked)="deselectCandidates()"
+    ></imx-selected-elements>
+  </ng-container>
+  <span class="imx-spacer"></span>
+  <button mat-stroked-button routerLink="/shoppingcart">
+    <eui-icon icon="forward"></eui-icon>&nbsp;<span translate>#LDS#Go to cart</span>
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    class="primary-action"
+    (click)="pushCandidatesToCart()"
+    [disabled]="selectionService.selectedProducts == null || selectionService.selectedProducts.length === 0"
+  >
+    <eui-icon icon="cart"></eui-icon>&nbsp;<span translate>#LDS#Add to cart</span>
+  </button>
+</div>

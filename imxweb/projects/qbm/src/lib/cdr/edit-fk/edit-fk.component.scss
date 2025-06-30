@@ -1,0 +1,73 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+:host {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.imx-spacer {
+  height: 30px;
+}
+
+.imx-viewport {
+  height: 200px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.mat-mdc-option {
+  height: 50px;
+}
+
+.imx-suffix-container {
+  display: flex;
+
+  > *:not(:last-child) {
+    margin-right: 8px;
+    margin-top: 0;
+  }
+}
+
+.imx-icon-delete {
+  cursor: pointer;
+  margin-top: 0;
+  display: inline;
+  line-height: 36px !important;
+}
+
+.eui-dark-theme {
+  :host {
+    color: $color-gray-2;
+    .imx-candidate-option {
+      .imx-candidate-item {
+        .imx-candidate-content {
+          .imx-candidate-display {
+            color: $color-gray-5;
+          }
+          .imx-candidate-longdisplay {
+            color: $color-gray-10;
+          }
+        }
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    color: $color-gray-0;
+    .imx-candidate-option {
+      .imx-candidate-item {
+        .imx-candidate-content {
+          .imx-candidate-display {
+            color: $color-gray-0;
+          }
+          .imx-candidate-longdisplay {
+            color: $color-gray-0;
+          }
+        }
+      }
+    }
+  }
+}

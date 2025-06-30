@@ -1,0 +1,4 @@
+<mat-card class="imx-card-sidesheet imx-margin-3">
+  <eui-select [options]="options" [inputControl]="formGroup.controls.selector" (selectionChange)="updateTab($event)"> </eui-select>
+  <ng-container #content></ng-container>
+</mat-card>

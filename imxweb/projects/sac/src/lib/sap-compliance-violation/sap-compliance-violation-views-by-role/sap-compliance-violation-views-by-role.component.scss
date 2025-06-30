@@ -1,0 +1,84 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+.sap-analysis {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+  justify-content: space-between;
+  &__table {
+    overflow: hidden auto;
+    flex-grow: 1;
+  }
+  .mat-mdc-card {
+    @include flex-column-container($width: 100%);
+    transition: width 400ms ease;
+    gap: 20px;
+
+    &--decreased {
+      padding: 0;
+      width: 48px;
+
+      .mat-mdc-card__header {
+        height: 100%;
+
+        &__title {
+          display: none;
+        }
+
+        button {
+          width: 48px;
+          padding: 20px 0;
+          min-width: unset;
+          height: 100%;
+          ::ng-deep .mdc-button__label {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+
+          h3 {
+            display: block;
+            margin: auto 0;
+            rotate: -90deg;
+            text-wrap: nowrap;
+          }
+
+          .eui-icon {
+            rotate: 180deg;
+          }
+        }
+      }
+
+      .sap-analysis__table,
+      eui-search {
+        display: none;
+      }
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &__title {
+        &--wide {
+          margin: auto;
+        }
+      }
+
+      button {
+        padding: 0;
+        min-width: 32px;
+
+        h3 {
+          display: none;
+        }
+
+        .eui-icon {
+          transition: rotate 400ms ease;
+        }
+      }
+    }
+  }
+}

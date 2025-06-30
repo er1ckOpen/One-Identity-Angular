@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Library overview",
+    "file": "overview.md",
+    "children": [
+      {
+        "title": "Administration",
+        "file": "admin.md"
+      },
+      {
+        "title": "Properties of an object",
+        "file": "properties.md"
+      },
+      {
+        "title": "Data sets",
+        "file": "datasets.md"
+      },
+      {
+        "title": "UI texts and translation",
+        "file": "messages.md"
+      },
+      {
+        "title": "Other reusable components and services",
+        "file": "other.md"
+      }
+    ]
+  },
+  {
+    "title": "Theming the application",
+    "file": "../../../custom-theme/readme.md"
+  },
+  {
+    "title": "SDK samples",
+    "file": "../../../compodoc/samples/samples.md",
+    "children": [
+      {
+        "title": "Adding a tile component to the dashboard",
+        "file": "../../../compodoc/samples/tiles.md"
+      },
+      {
+        "title": "Adding a menu to the Web Portal",
+        "file": "../../../compodoc/samples/menu.md"
+      },
+      {
+        "title": "Working with data tables",
+        "file": "../../../compodoc/samples/data_table.md"
+      }
+    ]
+  }
+]

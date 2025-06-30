@@ -1,0 +1,97 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/variables';
+
+:host {
+  min-width: 800px;
+  margin-bottom: 1em;
+}
+
+.config-summary {
+  display: flex;
+  flex-direction: row;
+}
+
+.config-changes {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: end;
+
+  button:not(:last-of-type) {
+    margin-right: 16px;
+  }
+}
+
+.flex-container {
+  position: absolute;
+  inset: 32px;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+}
+
+.section-header {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.section-subtitle {
+  font-size: smaller;
+  color: $color-gray-60;
+}
+
+.key-title {
+  gap: 5px;
+}
+
+.key-path {
+  font-family: monospace;
+  font-size: smaller;
+  text-align: right;
+  color: $color-gray-60;
+}
+
+.setting-novalue {
+  font-style: italic;
+}
+
+.right-aligned-description {
+  flex-grow: 0;
+}
+
+.project-selector {
+  min-width: 450px;
+}
+
+.wide-field {
+  min-width: 450px;
+  margin-right: 1em;
+}
+
+.scroll-container {
+  padding: 0.5em 0.5em 0.5em 0;
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &.loading {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.imx-no-results {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 18px;
+  color: $color-gray-60;
+
+  eui-icon {
+    color: $color-gray-60;
+  }
+}
+
+.cdk-virtual-scroll-viewport {
+  flex-grow: 1;
+}

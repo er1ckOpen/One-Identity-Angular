@@ -1,0 +1,14 @@
+:host {
+  width: 750px;
+  max-width: 100%;
+}
+
+.imx-button-previous {
+  margin-right: 10px;
+}
+
+.imx-owner-assigned {
+  > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

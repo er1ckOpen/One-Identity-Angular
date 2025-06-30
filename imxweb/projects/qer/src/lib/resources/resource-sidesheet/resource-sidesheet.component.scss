@@ -1,0 +1,9 @@
+.eui-sidesheet-actions {
+  button {
+    margin-right: 10px;
+  }
+
+  > *:not(:first-child) {
+    margin-left: 10px;
+  }
+}

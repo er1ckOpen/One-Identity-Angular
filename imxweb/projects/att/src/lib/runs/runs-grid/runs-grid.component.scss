@@ -1,0 +1,25 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container-fill();
+
+  ::ng-deep .mat-column-RunCategory,
+  ::ng-deep .mat-column-ClosedCases,
+  ::ng-deep .mat-column-PendingCases,
+  ::ng-deep .mat-column-PolicyProcessed,
+  ::ng-deep .mat-column-DueDate {
+    min-width: 70px;
+  }
+
+  ::ng-deep .mat-column-Progress {
+    min-width: 150px;
+
+    .mat-mdc-progress-bar {
+      max-width: 70px;
+    }
+  }
+}
+
+.imx-table-card {
+  @include flex-column-container-fill();
+}

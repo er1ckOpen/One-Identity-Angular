@@ -1,0 +1,20 @@
+:host {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.imx-spacer {
+  height: 30px;
+}
+
+.imx-suffix-container {
+  display: flex;
+  margin-bottom: 5px;
+
+  > * {
+    justify-self: flex-start;
+    margin-right: 5px;
+    margin-top: 0;
+  }
+}

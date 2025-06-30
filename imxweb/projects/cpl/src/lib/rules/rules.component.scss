@@ -1,0 +1,27 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+div[subtitle] {
+  font-size: smaller;
+  color: $black-9;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: inherit;
+}
+
+.imx-display-column {
+  width: 100% !important;
+  cursor: inherit !important;
+  &-main {
+    flex: 1 1 auto;
+    display: block !important;
+    cursor: inherit !important;
+  }
+  .imx-badge {
+    align-self: flex-end;
+  }
+}

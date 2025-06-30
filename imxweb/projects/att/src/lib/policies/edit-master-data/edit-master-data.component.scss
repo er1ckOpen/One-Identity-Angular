@@ -1,0 +1,65 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  .imx-policy-edit-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  h3 {
+    font-size: x-large;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .imx-master-data-cdrs {
+    display: flex;
+    flex-direction: column;
+    margin: 2px 10px 2px 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    h3 {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .imx-master-data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .imx-confirm-content {
+    overflow: auto;
+    white-space: pre-line;
+    word-wrap: break-word;
+    max-height: 400px;
+    max-width: 600px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .imx-master-data-cdrs {
+    display: flex;
+    flex-direction: column;
+    margin: 2px 5px 2px 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .imx-master-data-grid > * {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  imx-policy-editor {
+    margin-right: 5px;
+    margin-top: 20px;
+  }
+}

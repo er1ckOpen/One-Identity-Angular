@@ -1,0 +1,29 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+
+:host {
+  flex-grow: 1;
+}
+.imx-slider-label-container{
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  .imx-suffix-container {
+    display: flex;
+    margin-left: 10px;
+    width: 24px;
+    height: 24px;
+
+    > * {
+      margin-right: 5px;
+      margin-top: 0;
+    }
+  }
+}
+.imx-slider-container{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  .mat-mdc-slider{
+    flex-grow: 1;
+  }
+}

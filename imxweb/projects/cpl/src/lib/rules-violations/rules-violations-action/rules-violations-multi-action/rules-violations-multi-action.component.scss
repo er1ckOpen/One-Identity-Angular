@@ -1,0 +1,16 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+mat-card {
+  @include flex-column-container();
+  margin-bottom: 20px;
+}
+
+.imx-items-title {
+  font-size: 16px;
+}
+
+.imx-list-container {
+  overflow: hidden;
+  margin-bottom: 10px;
+}

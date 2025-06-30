@@ -1,0 +1,8 @@
+<div eui-sidesheet-content>
+  <imx-owner-control #ownerControl [column]="column" (formControlCreated)="onFormControlCreated($event)"></imx-owner-control>
+</div>
+<div eui-sidesheet-actions>
+  <button mat-flat-button color="primary" (click)="returnProductOwner()">
+    <span translate>#LDS#Apply</span>
+  </button>
+</div>

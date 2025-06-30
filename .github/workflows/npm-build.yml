@@ -1,0 +1,39 @@
+name: Build Angular workspace
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master, v93 ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+      # Currently only can run ubuntu on github agents, windows isn't correctly installing packages
+        os: [windows-latest]
+        node-version: [20.x]
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install packages
+      working-directory: ./imxweb
+      run: npm install --skip-dialog
+
+    - name: Build All
+      working-directory: ./imxweb
+      run: npm run nx:build-all
+      timeout-minutes: 25
+
+    - name: Test All
+      working-directory: ./imxweb
+      run: npm run nx:test-ci
+      timeout-minutes: 25

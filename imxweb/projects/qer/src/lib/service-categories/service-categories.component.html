@@ -1,0 +1,42 @@
+<div class="heading-wrapper">
+  <h2 class="mat-headline-5">
+    <span>{{ '#LDS#Heading Service Categories' | translate }}</span>
+    <imx-help-contextual></imx-help-contextual>
+  </h2>
+
+  <eui-alert class="imx-alert-end-50" type="info" [condensed]="true" [colored]="true" [dismissable]="true">
+    <span *ngIf="config?.hasAccproductparamcategoryCandidates; else withoutAccproductparamcategoryCandidates" translate>
+      {{ LdsKey1 }}
+    </span>
+    <span class="imx-image-info" *ngIf="config?.itshopConfig?.InheritCategoryImagesToItems" translate>
+      {{ LdsKey2 }}
+    </span>
+    <span class="imx-image-info" *ngIf="config?.itshopConfig?.InheritCategoryImagesToCategories" translate>
+      {{ LdsKey3 }}
+    </span>
+  </eui-alert>
+</div>
+
+<mat-card class="imx-data-tree">
+  <imx-data-tree-wrapper
+    [selectedEntities]="selectedEntities"
+    [database]="treeDatabase"
+    [withSelectedNodeHighlight]="false"
+    [emptyNodeCaption]="'#LDS#New service category' | translate"
+    (nodeSelected)="onServiceCategorySelected($event)"
+    data-imx-identifier="servicecategory-list-data-tree-categorytree"
+  >
+  </imx-data-tree-wrapper>
+</mat-card>
+
+<div class="imx-button-bar-transparent">
+  <button mat-flat-button color="primary" (click)="addServiceCategory()" data-imx-identifier="service-categories-button-create-new">
+    <eui-icon icon="add"></eui-icon>
+    <span translate>#LDS#Create service category</span>
+  </button>
+</div>
+
+<!-- Template for non existing -->
+<ng-template #withoutAccproductparamcategoryCandidates>
+  <span translate>{{ LdsKey4 }}</span>
+</ng-template>

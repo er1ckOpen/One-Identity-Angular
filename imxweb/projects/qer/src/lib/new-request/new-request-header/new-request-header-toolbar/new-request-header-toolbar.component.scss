@@ -1,0 +1,44 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+@import '../../new-request-global.scss';
+
+:host {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+
+  .imx-request-label {
+    @include new-request-text();
+  }
+
+  .imx-request-label-value {
+    @include new-request-text(body, true);
+  }
+
+  imx-data-source-toolbar ::ng-deep .imx-data-source-toolbar-search {
+    width: min(480px, 70vw);
+  }
+}
+
+// Theming
+:host {
+  .imx-request-label-value {
+    color: $color-orange-60;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-request-label-value {
+      color: $color-blue-40;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-request-label-value {
+      color: $color-blue-40;
+    }
+  }
+}

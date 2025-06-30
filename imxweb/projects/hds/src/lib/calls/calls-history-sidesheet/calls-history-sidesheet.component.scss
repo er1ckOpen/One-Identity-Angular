@@ -1,0 +1,18 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+.calls-history-sidesheet {
+  background-color: $asher-gray;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 480px) {
+  .calls-history-sidesheet {
+    &__tab-content {
+      display: block;
+    }
+  }
+}

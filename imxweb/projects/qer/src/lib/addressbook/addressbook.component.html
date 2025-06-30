@@ -1,0 +1,15 @@
+<div class="imx-header-toolbar">
+  <h2 class="mat-headline-5">
+    <span>{{ '#LDS#Heading Address Book' | translate }}</span>
+    <imx-help-contextual></imx-help-contextual>
+  </h2>
+  <imx-data-view-toolbar
+    [dataSource]="dataSource"
+    (updateConfig)="updateConfig($event)"
+    (deleteConfigById)="deleteConfigById($event)"
+  ></imx-data-view-toolbar>
+</div>
+<mat-card class="imx-card-fill">
+  <imx-data-view-auto-table [dataSource]="dataSource"></imx-data-view-auto-table>
+  <imx-data-view-paginator [dataSource]="dataSource"></imx-data-view-paginator>
+</mat-card>

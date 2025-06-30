@@ -1,0 +1,22 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1 1 auto;
+
+  .imx-tab-content-body {
+    padding: 0;
+  }
+}
+
+imx-selected-elements {
+  margin-left: 10px;
+}
+
+.imx-tab-content {
+  height: 100%;
+}

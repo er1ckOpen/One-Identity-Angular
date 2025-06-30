@@ -1,0 +1,11 @@
+@import '../pick-category-common.scss';
+
+:host {
+  ::ng-deep .cdk-column-select {
+    width: 50px;
+  }
+
+  .justify-start {
+    margin-right: auto;
+  }
+}

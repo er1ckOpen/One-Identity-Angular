@@ -1,0 +1,36 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+:host {
+  .imx-sidesheet-content__overflow {
+    .mat-mdc-card {
+      @include flex-column-container-fill();
+    }
+
+    .imx-data {
+      @include flex-column-container($overflow: auto);
+    }
+
+    .imx-sidesheet-actions {
+      column-gap: 10px;
+    }
+
+    .imx-source-info {
+      color: $color-gray-30;
+    }
+
+    .mat-column-description {
+      max-width: 300px;
+      padding-left: 10px;
+    }
+
+    table.mat-mdc-table {
+      box-shadow: none;
+      padding: 1px;
+    }
+
+    th.mat-mdc-header-cell:first-of-type {
+      padding-right: 10px;
+    }
+  }
+}

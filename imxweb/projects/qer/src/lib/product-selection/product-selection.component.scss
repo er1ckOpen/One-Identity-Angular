@@ -1,0 +1,180 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  // Wrap deep selectors under host to quarantine them
+  // Add some padding to data-tiles
+  ::ng-deep imx-data-tiles {
+    padding-left: 10px;
+  }
+}
+
+h2 {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.imx-top-container {
+  display: grid;
+  grid-template-columns: auto auto 1fr 20px;
+  grid-template-rows: 60px auto auto;
+  grid-gap: 10px;
+  align-items: baseline;
+
+  .imx-helper-alert {
+    grid-column: 2 / span 3;
+    grid-row: 1 / 1;
+    max-width: max(500px, 50%);
+    justify-self: end;
+    z-index: 10;
+  }
+}
+
+.imx-title {
+  font-size: 24px;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.imx-history {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  height: 160px;
+  width: 400px;
+  justify-self: end;
+  overflow: hidden;
+
+  .mat-mdc-card-content {
+    margin-bottom: 0px;
+    height: 60px;
+  }
+
+  .mat-mdc-card-actions {
+    padding-top: 2px;
+  }
+}
+
+.imx-peer {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  height: 160px;
+  overflow: hidden;
+
+  .mat-mdc-card-content {
+    margin-bottom: 0px;
+    height: 60px;
+  }
+
+  .mat-mdc-card-actions {
+    padding-top: 2px;
+  }
+}
+
+.imx-recipients {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  display: flex;
+  position: relative;
+  top: -5px;
+
+  .imx-recipients-readonly-cdr {
+    position: relative;
+    top: -10px;
+  }
+}
+
+.imx-recipients-cdr {
+  grid-column: 3 / 3;
+  grid-row: 1 / 1;
+  width: 250px;
+}
+
+.imx-icon-info {
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.imx-actions-button {
+  margin-left: 20px;
+  padding: 0;
+  min-width: 0px;
+}
+
+.imx-categories {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+.imx-search-headline {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+
+  h2 {
+    margin-right: 10px;
+  }
+}
+
+.imx-button-bar {
+  display: flex;
+  margin-top: 10px;
+
+  button {
+    margin-left: 10px;
+    align-self: center;
+    ::ng-deep .mdc-button__label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+    }
+  }
+
+  .imx-menu-spacer {
+    flex-grow: 1;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .imx-top-container,
+  .imx-top-container-auto {
+    .imx-helper-alert {
+      grid-column: 1 / span 3;
+      grid-row: 3 / span 3;
+      justify-self: start;
+      max-width: 100%;
+      margin-top: -20px;
+    }
+  }
+
+  .imx-history {
+    grid-column-end: 5;
+    grid-row-end: 2;
+  }
+
+  .imx-categories {
+    grid-column-end: 5;
+  }
+}
+
+imx-selected-elements {
+  margin-left: 10px;
+}

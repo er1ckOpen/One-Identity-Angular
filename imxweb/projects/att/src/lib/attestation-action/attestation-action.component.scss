@@ -1,0 +1,34 @@
+.eui-sidesheet-actions {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  justify-content: flex-end;
+}
+
+.imx-attestation-case-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: hidden;
+
+  .imx-bulk-editor {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 2px;
+    margin-bottom: 30px;
+  }
+
+  .imx-decision-reason {
+    flex: 0 0 auto;
+  }
+}
+
+.imx-additional-elements {
+  margin-bottom: 20px;
+}
+
+.imx-decision-card {
+  margin-bottom: 20px;
+  margin-left: 2px;
+  margin-right: 2px;
+}

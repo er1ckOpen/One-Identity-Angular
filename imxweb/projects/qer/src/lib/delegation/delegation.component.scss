@@ -1,0 +1,169 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+@mixin stepper-margin {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+:host {
+  @include flex-column-container($height: 100%, $overflow: hidden);
+
+  .imx-stepper-content {
+    @include stepper-margin();
+  }
+
+  //For hiding components during loading
+  .hidden {
+    display: none;
+  }
+
+  imx-busy-indicator {
+    align-self: center;
+    margin-top: 20px;
+  }
+
+  .imx-roles-form {
+    @include flex-column-container($height: 390px);
+    border-radius: 5px;
+    padding: 5px;
+    @include stepper-margin();
+  }
+
+  .imx-type-selector {
+    @include stepper-margin();
+  }
+
+  .imx-delegatable-elements {
+    margin-bottom: 10px;
+    max-height: 600px;
+    @include flex-row-container-fill();
+    overflow: hidden;
+  }
+
+  .imx-delegation-stepper {
+    @include flex-column-container-fill();
+    max-width: 100%;
+    margin: 3px;
+
+    > :first-child {
+      @include flex-column-container-fill();
+      overflow: auto;
+    }
+  }
+
+  .imx-list-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+
+    > :nth-child(2) {
+      flex: 1 1 auto;
+      overflow: auto;
+    }
+
+    .imx-paginator-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      > :last-child {
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  .mat-vertical-content-container {
+    flex: 1 1 auto;
+  }
+
+  .imx-small-error {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .imx-delegation-success {
+    margin: 20px;
+    width: max-content;
+  }
+
+  .imx-global-elements {
+    @include flex-column-container-fill();
+    padding-left: 1em;
+    overflow-y: auto;
+
+    imx-busy-indicator {
+      flex: 1 1 auto;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .nr-roles {
+    font-style: italic;
+  }
+
+  .imx-delegation-type {
+    @include stepper-margin();
+    > * :not(last-child) {
+      margin-right: 15px;
+    }
+  }
+
+  .imx-class-title {
+    font-weight: 600;
+    margin: 30px 0 0 0;
+  }
+
+  .imx-no-results {
+    display: flex;
+    margin: 20px 0;
+    flex: 1 1 auto;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+
+  .imx-additional-informations {
+    @include stepper-margin();
+  }
+}
+
+// Theming
+.eui-light-theme {
+  :host {
+    .imx-no-results {
+      p {
+        color: $color-gray-50;
+      }
+    }
+
+    .imx-roles-form {
+      border: $color-gray-10 1px solid;
+    }
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-no-results {
+      p {
+        color: $color-gray-10;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-no-results {
+      p {
+        color: $color-gray-0;
+      }
+    }
+  }
+}

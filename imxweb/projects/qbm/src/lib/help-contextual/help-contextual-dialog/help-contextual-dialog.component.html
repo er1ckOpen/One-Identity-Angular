@@ -1,0 +1,18 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title translate>{{ dialogHeading }}</h2>
+  <mat-dialog-content>
+    <ng-container *ngFor="let detail of dialogDetails">
+      <div translate class="imx-margin-bottom-5">{{ detail }}</div>
+    </ng-container>
+    <div class="dialog-content__links">
+      <ng-container *ngFor="let link of data.Links">
+        <a [href]="getHelpLink(link)" target="_blank" translate>{{ link.Title }}</a>
+      </ng-container>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-flat-button color="primary" mat-dialog-close>
+      {{ '#LDS#Close' | translate }}
+    </button>
+  </mat-dialog-actions>
+</div>

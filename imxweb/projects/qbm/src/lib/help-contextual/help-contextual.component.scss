@@ -1,0 +1,18 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+}
+span {
+  color: $color-gray-60;
+  font-size: 14px;
+}
+
+.eui-dark-theme {
+  :host {
+    span {
+      color: $color-gray-10;
+    }
+  }
+}

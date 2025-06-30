@@ -1,0 +1,67 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  width: 100%;
+  height: 100%;
+
+  .imx-log-timeline-container {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .imx-slide-toggle{
+      margin:auto;
+    }
+  }
+
+  .flex-container {
+    display: flex;
+    align-items: stretch;
+    margin-top: 2em;
+  }
+
+  .imx-no-results {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+
+  .mdc-list {
+    height: 100%;
+    overflow: auto;
+  }
+
+  imx-data-source-toolbar {
+    flex: 1 1 auto;
+    min-width: 0px;
+    transition: 1s;
+  }
+
+  p {
+    color: $color-gray-40;
+  }
+}
+
+.imx-error-message {
+  display: flex;
+  align-items: center;
+  color: $color-red-60;
+
+  eui-icon {
+    margin-right: 8px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  imx-data-source-toolbar {
+    flex-basis: 60%;
+    transition: 1s;
+  }
+}

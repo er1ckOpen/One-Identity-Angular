@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  imx-busy-indicator {
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+.imx-refresh-line {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.inner-card {
+  margin-bottom: 1em;
+  mat-card-content {
+    padding: 0 1em;
+  }
+}
+
+.showmessage {
+  margin-left: 1em;
+}
+
+.objecttype {
+  font-style: italic;
+  font-size: smaller;
+}
+
+.objectlist {
+  list-style-type: initial;
+}
+
+.imx-single-frozen.imx-flex-container {
+  margin: 0;
+
+  ::ng-deep .mat-mdc-table {
+    box-shadow: none;
+  }
+}

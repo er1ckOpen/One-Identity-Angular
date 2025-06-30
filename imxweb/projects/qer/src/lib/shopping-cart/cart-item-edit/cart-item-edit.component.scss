@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  flex: 1;
+}
+
+.imx-content {
+  padding: 0;
+}
+
+.imx-sidesheet-actions__buttons-margin {
+  margin: -20px;
+  margin-top: auto;
+}
+
+.imx-information {
+  margin-bottom: 15px;
+}

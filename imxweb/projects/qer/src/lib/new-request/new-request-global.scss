@@ -1,0 +1,101 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+.imx-spacer {
+  flex: 1 1 auto;
+}
+
+@mixin Layout-Styles {
+  :host {
+    height: 100%;
+    display: flex;
+    padding: 16px 24px;
+    row-gap: 16px;
+    column-gap: 24px;
+    overflow: hidden;
+
+    .imx-card-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .image-category {
+      width: 24px;
+      height: auto;
+    }
+
+    .mat-mdc-chip {
+      cursor: pointer;
+    }
+  }
+}
+
+@mixin Table-Styles {
+  :host {
+    img {
+      width: 32px;
+      height: auto;
+    }
+    .imx-request-col{
+      display: flex;
+      gap: 8px;
+    }
+
+    .imx-request-col-image {
+      display: flex;
+      align-items: center;
+    }
+
+    .imx-request-col-display {
+      font-weight: 700;
+      font-size: 14px;
+      // line-height: 48px;
+    }
+
+    .imx-request-col-text {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 48px;
+    }
+
+    .imx-request-col-status {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    imx-data-table ::ng-deep tr.mat-mdc-header-row {
+      height: 50px;
+    }
+  }
+
+  // Theming
+  :host {
+    .imx-request-col-text,
+    .imx-request-col-status {
+      color: $color-gray-60;
+    }
+  }
+
+  .eui-dark-theme {
+    :host {
+      .imx-request-col-text,
+      .imx-request-col-status {
+        color: $color-gray-20;
+      }
+    }
+  }
+
+  .eui-contrast-theme {
+    :host {
+      .imx-request-col-text,
+      .imx-request-col-status {
+        color: $color-gray-0;
+      }
+    }
+  }
+}

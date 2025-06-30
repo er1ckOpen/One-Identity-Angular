@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{ '#LDS#Heading Edit Translations' | translate }}</h2>
+<div mat-dialog-content>
+  <ng-container *ngFor="let column of translationData?.ColumnNames">
+    <mat-form-field *ngFor="let item of translationData?.Languages | keyvalue" appearance="outline">
+      <mat-label>{{ getDisplay(column) }} {{ item.value }}</mat-label>
+      <input matInput (input)="onInput($event, column, item.key)" [ngModel]="getValue(column, item.key)" />
+    </mat-form-field>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button type="button" mat-dialog-close data-imx-identifier="translation-editor-button-cancel">
+    {{ '#LDS#Cancel' | translate }}
+  </button>
+  <button mat-flat-button type="button" color="primary" data-imx-identifier="translation-editor-button-save" (click)="save()">
+    {{ '#LDS#Save' | translate }}
+  </button>
+</div>

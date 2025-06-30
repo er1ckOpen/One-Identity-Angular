@@ -1,0 +1,10 @@
+
+@import 'base/mixins';
+:host {
+  @include flex-column-container($height: inherit);
+}
+
+.mat-mdc-dialog-content {
+  @include flex-column-container($height: inherit);
+  flex: 1;
+}

@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.create-ticket-button {
+  align-self: flex-start;
+}
+
+.calls-data-table {
+  flex-grow: 1;
+  overflow: auto;
+}

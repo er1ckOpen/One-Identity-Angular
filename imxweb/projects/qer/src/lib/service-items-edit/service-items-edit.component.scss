@@ -1,0 +1,25 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: inherit, $max-width: 100%);
+}
+
+.heading-wrapper {
+  @include flex-row-container();
+  flex: 0 0 auto;
+}
+
+.imx-service-items-page {
+  @include flex-column-container($overflow: hidden);
+  background-color: inherit;
+  flex: 1 1 auto;
+  
+}
+
+@media screen and (max-width: 768px) {
+  .imx-pickcategory-page {
+    .heading-wrapper {
+      display: block;
+    }
+  }
+}

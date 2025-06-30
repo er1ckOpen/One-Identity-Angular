@@ -1,0 +1,54 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: 100%);
+}
+.imx-viewmode-content {
+  @include flex-column-container($overflow: auto);
+  flex: 1 1 auto;
+}
+
+.imx-viewmode-content-controls {
+  margin-bottom: 1rem;
+  .eui-select{
+    width: 180px;
+  }
+}
+
+.imx-viewmode,
+.imx-timeline-from,
+.imx-timeline-to,
+.imx-viewmode-content-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.imx-viewmode-content-controls{
+  gap: 16px;
+}
+
+.mdc-icon-button{
+  line-height: 20px;
+}
+
+.imx-filter-icon{
+  font-size: 20px;
+  padding-right: 8px;
+  &-edit{
+    color: $color-blue-60;
+  }
+  &-add{
+    color: $color-green-60;
+  }
+  &-remove{
+    color: $color-red-60;
+  }
+}
+
+eui-date-picker{
+  width: 170px;
+}

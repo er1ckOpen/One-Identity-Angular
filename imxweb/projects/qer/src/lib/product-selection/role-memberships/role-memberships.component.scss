@@ -1,0 +1,15 @@
+:host {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+eui-icon {
+  margin-right: 5px;
+}
+
+.imx-data-view-container {
+  flex-grow: 1;
+  overflow: auto;
+}

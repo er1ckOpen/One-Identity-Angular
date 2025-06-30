@@ -1,0 +1,105 @@
+<div *ngIf="showCatInfo">
+  <span class="imx-request-label" translate>#LDS#Category</span>:&nbsp;
+  <span *ngIf="selectedCategory" class="imx-request-label-value">{{ selectedCategory.GetEntity().GetDisplay() }}</span>
+  <span *ngIf="selectedCategory == null" class="imx-request-label-value" translate>#LDS#Root category (all products)</span>
+</div>
+<imx-data-source-toolbar
+  *ngIf="selectedView === SelectedProductSource.AllProducts && !disableSearch && !!orchestration.dstSettingsAllProducts"
+  imxElementVisibility
+  (elementVisibile)="onVisibility($event)"
+  data-imx-identifier="dst-allproducts"
+  [settings]="orchestration.dstSettingsAllProducts"
+  [searchBoxText]="searchBoxText | translate"
+  [keywords]="orchestration.keywords"
+  [isStandaloneToolbar]="true"
+  [alwaysVisible]="true"
+  [useThemedStyle]="true"
+  [options]="['search']"
+  [searchApi]="searchApi"
+  (navigationStateChanged)="onNavigationChanged($event)"
+></imx-data-source-toolbar>
+<imx-data-source-toolbar
+  *ngIf="selectedView === SelectedProductSource.PeerGroupProducts && !disableSearch && !!orchestration.dstSettingsPeerGroupProducts"
+  imxElementVisibility
+  (elementVisibile)="onVisibility($event)"
+  data-imx-identifier="dst-peergroupproducts"
+  [settings]="orchestration.dstSettingsPeerGroupProducts"
+  [searchBoxText]="searchBoxText | translate"
+  [isStandaloneToolbar]="true"
+  [alwaysVisible]="true"
+  [useThemedStyle]="true"
+  [options]="['search']"
+  [searchApi]="searchApi"
+  (navigationStateChanged)="onNavigationChanged($event)"
+></imx-data-source-toolbar>
+<imx-data-source-toolbar
+  *ngIf="selectedView === SelectedProductSource.PeerGroupOrgs && !disableSearch && !!orchestration.dstSettingsPeerGroupOrgs"
+  imxElementVisibility
+  (elementVisibile)="onVisibility($event)"
+  data-imx-identifier="dst-peergrouporgs"
+  [settings]="orchestration.dstSettingsPeerGroupOrgs"
+  [searchBoxText]="searchBoxText | translate"
+  [isStandaloneToolbar]="true"
+  [alwaysVisible]="true"
+  [useThemedStyle]="true"
+  [options]="['search']"
+  [searchApi]="searchApi"
+  (navigationStateChanged)="onNavigationChanged($event)"
+></imx-data-source-toolbar>
+<imx-data-source-toolbar
+  *ngIf="selectedView === SelectedProductSource.ReferenceUserProducts && !disableSearch && !!orchestration.dstSettingsReferenceUserProducts"
+  imxElementVisibility
+  (elementVisibile)="onVisibility($event)"
+  data-imx-identifier="dst-referenceuserproducts"
+  [settings]="orchestration.dstSettingsReferenceUserProducts"
+  [searchBoxText]="searchBoxText | translate"
+  [isStandaloneToolbar]="true"
+  [alwaysVisible]="true"
+  [useThemedStyle]="true"
+  [options]="['search']"
+  [searchApi]="searchApi"
+  (navigationStateChanged)="onNavigationChanged($event)"
+></imx-data-source-toolbar>
+<imx-data-source-toolbar
+  *ngIf="selectedView === SelectedProductSource.ReferenceUserOrgs && !disableSearch && !!orchestration.dstSettingsReferenceUserOrgs"
+  imxElementVisibility
+  (elementVisibile)="onVisibility($event)"
+  data-imx-identifier="dst-referenceuserorgs"
+  [settings]="orchestration.dstSettingsReferenceUserOrgs"
+  [searchBoxText]="searchBoxText | translate"
+  [isStandaloneToolbar]="true"
+  [alwaysVisible]="true"
+  [useThemedStyle]="true"
+  [options]="['search']"
+  [searchApi]="searchApi"
+  (navigationStateChanged)="onNavigationChanged($event)"
+></imx-data-source-toolbar>
+<imx-data-source-toolbar
+  *ngIf="selectedView === SelectedProductSource.ProductBundles && !disableSearch && !!orchestration.dstSettingsProductBundles"
+  imxElementVisibility
+  (elementVisibile)="onVisibility($event)"
+  data-imx-identifier="dst-productbundles"
+  [settings]="orchestration.dstSettingsProductBundles"
+  [searchBoxText]="searchBoxText | translate"
+  [isStandaloneToolbar]="true"
+  [alwaysVisible]="true"
+  [useThemedStyle]="true"
+  [options]="['search']"
+  [searchApi]="searchApi"
+  (navigationStateChanged)="onNavigationChanged($event)"
+></imx-data-source-toolbar>
+<imx-data-source-toolbar
+  *ngIf="disableSearch && !!orchestration.dstSettingsProductBundles"
+  imxElementVisibility
+  (elementVisibile)="onVisibility($event)"
+  data-imx-identifier="dst-productbundles"
+  [settings]="orchestration.dstSettingsProductBundles"
+  [searchBoxText]="searchBoxText | translate"
+  [isStandaloneToolbar]="true"
+  [alwaysVisible]="true"
+  [useThemedStyle]="true"
+  [disableSearch]="true"
+  [options]="['search']"
+  [searchApi]="searchApi"
+  (navigationStateChanged)="onNavigationChanged($event)"
+></imx-data-source-toolbar>

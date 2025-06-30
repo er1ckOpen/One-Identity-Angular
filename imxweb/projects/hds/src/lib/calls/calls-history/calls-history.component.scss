@@ -1,0 +1,6 @@
+@import 'base/mixins';
+
+
+:host {
+@include flex-column-container-fill();
+}

@@ -1,0 +1,12 @@
+<div eui-sidesheet-content class="table-wrapper">
+  <imx-loss-preview-table [lossPreview]="data.lossPreview"></imx-loss-preview-table>
+</div>
+
+<div eui-sidesheet-actions>
+  <button mat-stroked-button (click)="onCancel()" data-imx-identifier="loss-preview-dialog-button-cancel">
+    {{ '#LDS#Cancel' | translate }}
+  </button>
+  <button mat-flat-button color="warn" (click)="onDeny()" cdkFocusInitial data-imx-identifier="loss-preview-dialog-button-deny">
+    {{ '#LDS#Deny' | translate }}
+  </button>
+</div>

@@ -1,0 +1,86 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/variables';
+@import 'base/mixins';
+
+.imx-searchbar-card {
+  max-width: $IMX_SearchBar_Width;
+  width: $IMX_SearchBar_Width;
+  padding: 0;
+  .imx-searchbar-card-content {
+    padding: 0 !important;
+  }
+  margin-top: 4px;
+}
+
+.imx-search-component {
+  @include flex-row-container();
+}
+
+.imx-display-card {
+  height: 37px;
+}
+
+.imx-search-input {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+}
+
+.imx-searchbar-resultcard {
+  padding: 0 !important;
+  background: $white !important;
+  min-height: 50px !important;
+  z-index: 100;
+}
+
+.imx-searchbar-noitems {
+  padding: 15px;
+  background: $white;
+}
+
+.imx-searchbar-dropdown {
+  max-width: $IMX_SearchBar_Width;
+  margin-top: 2px;
+  padding: 0;
+}
+
+.matlistItem:hover {
+  background-color: $color-blue-40;
+}
+
+.matlistItem {
+  white-space: pre-line;
+}
+
+imx-searchbar {
+  display: flex;
+}
+
+.imx-searchbar-tablefilter {
+  margin-left: 15px;
+  width: 300px;
+  display: flex;
+
+  .mat-mdc-form-field {
+    flex: 1 1 auto;
+  }
+}
+
+.imx-searchbar-control {
+  height: $IMX_SearchBar_Height;
+}
+
+.imx-searchbar-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  line-height: $IMX_SearchBar_Height;
+  .imx-input-searchbar {
+    flex-grow: 1;
+  }
+}
+
+.imx-searchbar-select {
+  margin-top: 30px;
+  margin-left: 40px;
+}

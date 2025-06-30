@@ -1,0 +1,30 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 20px;
+  flex: 1 1 auto;
+
+  .mat-mdc-checkbox {
+    display: block;
+  }
+
+  .imx-filter-title,
+  // Need to ng deep to overwrite elemental values, specificity wins still
+  .imx-filter-title ::ng-deep label.eui-label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  imx-busy-indicator {
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+  }
+}

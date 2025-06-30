@@ -1,0 +1,93 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.imx-progress-content {
+  overflow-y: auto;
+  flex: 1 1 auto;
+
+  .imx-progress-forecast {
+    display: flex;
+    flex-direction: column;
+  }
+
+  imx-progress {
+    width: 200px;
+  }
+
+  .imx-run-info-category {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 2px;
+  }
+
+  .imx-property-display {
+    margin-bottom: 20px;
+
+    > span {
+      display: flex;
+      align-items: center;
+    }
+
+    > span:first-child {
+      font-size: 12px;
+      color: $color-gray-40;
+      padding-bottom: 5px;
+    }
+
+    .imx-icon-info {
+      margin-left: 5px;
+    }
+  }
+
+  .imx-category-message {
+    font-weight: 600;
+  }
+}
+
+.imx-readonly-view {
+  margin-bottom: 20px;
+
+  span {
+    display: block;
+    word-wrap: break-word;
+
+    &.column-display {
+      font-size: 12px;
+      color: $color-gray-40;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.imx-readonly-view-with-tip {
+  margin-bottom: 20px;
+
+  span {
+    display: block;
+    word-wrap: break-word;
+
+    &.column-display {
+      font-size: 12px;
+      color: $color-gray-40;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+
+.imx-run-info-category-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.seperator {
+  border-bottom: 1px solid $color-gray-40;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}

@@ -1,0 +1,79 @@
+<mat-card
+  [@expandDiv]="{ value: expandState, params: { expandWidth: expandWidth } }"
+  class="imx-snavigation-tree"
+  [ngClass]="{ 'imx-snavigation--expanded': sideNavExpanded, 'mat-mdc-card--hidden': !showSidenavHeader }"
+>
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened disableClose="true" [ngClass]="{ 'imx-snavigation-side--expanded': sideNavExpanded }">
+      <div class="imx-snavigation-side" [ngClass]="{ 'imx-padding-bottom-20': showSidenavHeader && sideNavExpanded }">
+        <div class="imx-snavigation-side-toggle" *ngIf="showSidenavHeader">
+          <h3 class="imx-snavigation-side-toggle-header">{{ headerText }}</h3>
+          <button
+            *ngIf="dynamicDataSource?.dstSettings && sideNavExpanded"
+            [@fadeIcon]="searchState"
+            data-imx-identifier="sidenav-tree-search-toggle"
+            mat-icon-button
+            color="primary"
+            (click)="enableSearch()"
+            [matTooltip]="'#LDS#Search' | translate"
+          >
+            <eui-icon icon="search"></eui-icon>
+          </button>
+          <imx-data-source-toolbar
+            #dst
+            *ngIf="dynamicDataSource?.dstSettings"
+            [@expandSearch]="{ value: searchState, params: { expandWidth: expandWidth } }"
+            [alwaysVisible]="true"
+            [settings]="dynamicDataSource.dstSettings"
+            [options]="['search', 'filter']"
+            [searchBoxText]="'#LDS#Search' | translate"
+            [useThemedStyle]="true"
+            (search)="onSearch($event)"
+            (navigationStateChanged)="onSearch($event.search ?? '')"
+          ></imx-data-source-toolbar>
+          <button
+            *ngIf="sideNavExpanded"
+            data-imx-identifier="sidenav-tree-collapse-all-toggle"
+            mat-icon-button
+            color="primary"
+            (click)="closeAllNodes()"
+            [disabled]="!anyNodeOpen"
+            [matTooltip]="'#LDS#Collapse all' | translate"
+            [attr.aria-label]="'#LDS#Collapse all' | translate"
+          >
+            <eui-icon icon="compress"></eui-icon>
+          </button>
+          <button
+            class="expand-control-button"
+            data-imx-identifier="sidenav-tree-expand-toggle"
+            mat-icon-button
+            color="primary"
+            (click)="toggleExpand()"
+            [matTooltip]="(sideNavExpanded ? '#LDS#Hide' : '#LDS#Show') | translate"
+            [attr.aria-label]="(sideNavExpanded ? '#LDS#Hide' : '#LDS#Show') | translate"
+          >
+            <eui-icon [@rotateIcon]="expandState" icon="collapseleft"></eui-icon>
+            <h3 class="rotate-90">{{ headerText }}</h3>
+          </button>
+        </div>
+
+        <imx-custom-tree-control
+          *ngIf="sideNavExpanded"
+          [treeControl]="treeControl"
+          [dataSource]="dataSource"
+          [nodeContent]="nodeContent"
+          [dynamicDataSource]="dynamicDataSource"
+          [hasChild]="hasChild"
+          [isSelected]="isSelected"
+          [isLoading]="isLoading"
+          [noResultText]="noResultText"
+          (selectedNode)="selectedNode.emit($event)"
+        ></imx-custom-tree-control>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</mat-card>
+
+<ng-template #treeNodeTemplate let-node let-selected="selected">
+  <ng-content *ngTemplateOutlet="nodeContent; context: { $implicit: node, selected: selected }"></ng-content>
+</ng-template>

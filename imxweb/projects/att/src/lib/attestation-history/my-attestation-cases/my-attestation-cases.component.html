@@ -1,0 +1,8 @@
+<ng-container *ngIf="attestationParameters">
+  <imx-attestation-history
+    [selectable]="false"
+    [withAssignmentAnalysis]="true"
+    [parameters]="attestationParameters"
+    [title]="'#LDS#Heading My Attestations' | translate"
+  ></imx-attestation-history>
+</ng-container>

@@ -1,0 +1,11 @@
+<div eui-sidesheet-content>
+  <mat-card class="imx-card">
+    <form [formGroup]="detailsFormGroup">
+      <imx-cdr-editor
+        *ngFor="let cdr of cdrList"
+        [cdr]="cdr"
+        (controlCreated)="detailsFormGroup.addControl(cdr.column.ColumnName, $event)"
+      ></imx-cdr-editor>
+    </form>
+  </mat-card>
+</div>

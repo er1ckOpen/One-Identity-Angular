@@ -1,0 +1,105 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+@import '../../new-request-global.scss';
+
+:host {
+  .eui-sidesheet-content {
+    @include flex-column-container();
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .mat-mdc-card {
+      @include flex-column-container($overflow: hidden);
+      @include eui-elevation-1;
+      margin-bottom: 20px;
+      padding-top: 8px;
+    }
+  }
+
+  .details-container {
+    display: flex;
+
+    .details-image {
+      margin: 16px 0 16px auto;
+      max-width: 30%;
+      img {
+        width: 100%;
+      }
+    }
+
+    .details-text {
+      margin: 15px;
+      font-size: 14px;
+      width: 70%;
+
+      .details-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+        .details-label,
+        .details-value {
+          display: flex;
+          flex-direction: column;
+          flex-basis: 100%;
+          flex: 1;
+          margin: 8px 0;
+          // preserve line breaks in source data
+          text-wrap-mode: wrap;
+          word-break: break-word;
+          white-space-collapse: preserve-breaks;
+        }
+
+        .details-label {
+          text-align: right;
+          padding-right: 15px;
+          max-width: 120px;
+        }
+      }
+    }
+  }
+
+  .entitlement-info {
+    font-size: 14px;
+    display: flex;
+    text-align: center;
+  }
+}
+
+// Theming
+:host {
+  .details-label {
+    color: $color-gray-60;
+  }
+
+  .entitlement-info {
+    color: $color-gray-80;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .details-label {
+      color: $color-gray-20;
+    }
+
+    .entitlement-info {
+      color: $color-gray-10;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .details-label {
+      color: $color-gray-0;
+    }
+
+    .entitlement-info {
+      color: $color-gray-0;
+    }
+  }
+}

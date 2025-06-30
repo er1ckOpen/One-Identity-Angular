@@ -1,0 +1,52 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+
+.eui-icon {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.mat-mdc-card {
+  padding: 0;
+  margin: 5px;
+}
+
+.imx-system-status {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.eui-dark-theme {
+  :host {
+    .issueTitle {
+      color: $color-gray-5;
+    }
+
+    .issueContent {
+      color: $color-gray-5;
+    }
+
+    .issueIconLine {
+      color: $color-gray-2;
+      background-color: $color-gray-60;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .issueTitle {
+      color: $color-gray-0;
+    }
+
+    .issueContent {
+      color: $color-gray-0;
+    }
+
+    .issueIconLine {
+      color: $color-gray-0;
+      background-color: $color-gray-80;
+    }
+  }
+}

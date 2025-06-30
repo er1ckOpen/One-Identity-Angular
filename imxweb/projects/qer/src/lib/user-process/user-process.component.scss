@@ -1,0 +1,8 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container();
+  height: 100%;
+  overflow: hidden;
+}

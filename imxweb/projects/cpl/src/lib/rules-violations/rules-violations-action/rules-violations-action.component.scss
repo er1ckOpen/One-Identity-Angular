@@ -1,0 +1,16 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+:host {
+  .eui-sidesheet-content {
+    @include flex-column-container();
+
+    .imx-rules-violations-action-form {
+      @include flex-column-container($overflow: auto);
+
+      > * {
+        @include flex-column-container($overflow: auto);
+      }
+    }
+  }
+}

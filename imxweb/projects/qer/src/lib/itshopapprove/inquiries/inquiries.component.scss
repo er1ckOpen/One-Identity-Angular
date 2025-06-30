@@ -1,0 +1,20 @@
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.imx-margin-right {
+  margin-right: 10px;
+}
+
+.mat-mdc-outlined-button {
+  @include image-button-icon();
+}
+
+.mat-mdc-card.imx-card-fill{
+  margin: 0 0 3px 0;
+}

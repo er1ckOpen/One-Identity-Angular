@@ -1,0 +1,70 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  overflow-y: auto;
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .imx-spinner-center {
+    display: inherit;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .imx-data-no-results {
+    display: inherit;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.heading-wrapper {
+  display: flex;
+  flex: 0 0 auto;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.table-subtitle {
+  font-size: 80%;
+}
+
+.imx-attestation-case-loss-preview {
+  margin: 15px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+// Theming
+:host {
+  .table-subtitle {
+    color: $color-gray-40;
+  }
+
+  .imx-data-no-results {
+    color: $color-gray-20;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .table-subtitle {
+      color: $color-gray-20;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .table-subtitle {
+      color: $color-gray-10;
+    }
+  }
+}

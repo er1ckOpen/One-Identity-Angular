@@ -1,0 +1,40 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: 100%, $max-width: 100%);
+}
+
+.imx-itshop-content {
+  @include flex-column-container-fill();
+}
+
+.imx-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+
+  button {
+    margin-left: 10px;
+  }
+}
+
+.imx-toolbar-info {
+  margin-right: 10px;
+}
+
+.imx-shoppingcart-top-container {
+  margin: 0 0 16px 0;
+  display: flex;
+}
+.imx-itshop-info {
+  margin: 0;
+}
+
+.imx-shoppingcart-top-right-container {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.LabelBlock {
+  display: block;
+}

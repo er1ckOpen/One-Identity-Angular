@@ -1,0 +1,25 @@
+<div eui-sidesheet-content>
+  <mat-card class="imx-dialog-content">
+    <eui-alert class="imx-margin-bottom-20" [condensed]="true" [colored]="true" type="info" [dismissable]="false"
+      *ngIf="data?.isRequired && (fkSelector?.selectedCandidates?.length ?? 0) < 1">
+      {{ '#LDS#Select at least one item.' | translate }}
+    </eui-alert>
+    <imx-fk-selector #fkSelector [data]="data" (selectedCandidatesChanges)="onSelectedCandidatesChanges()"
+      (elementSelected)="selectObject($event)" (tableselected)="updateTable($event)"></imx-fk-selector>
+  </mat-card>
+</div>
+
+<div eui-sidesheet-actions class="imx-button-bar-transparent" *ngIf="data?.isMultiValue">
+  <imx-selected-elements class="justify-start" [selectedElements]="fkSelector?.selectedCandidates"
+    [showDeselectAll]="true" (onDeselectAllClicked)="fkSelector.clearSelection()">
+  </imx-selected-elements>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="data?.isRequired && (fkSelector?.selectedCandidates?.length ?? 0) < 1"
+    (click)="applySelection()"
+    data-imx-identifier="cdr-fkadvancedpicker-button-apply-selection"
+  >
+    {{ '#LDS#Select' | translate }}
+  </button>
+</div>

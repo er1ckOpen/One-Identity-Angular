@@ -1,0 +1,430 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@elemental-ui/core/src/styles/core.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/variables';
+@import 'base/margins-paddings';
+
+@import 'components/paginator';
+@import 'components/progress-bar';
+@import 'components/spinner';
+@import 'components/ripple';
+@import 'components/table';
+@import 'components/tabs';
+@import 'components/toolbar';
+@import 'components/tree';
+
+/* overall used styles */
+.imx-hidden {
+  display: none;
+}
+
+/* #region Grid styles*/
+
+.imx-underlined {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.imx-ListViewItem {
+  font-size: 15px;
+  text-overflow: ellipsis;
+  color: $color-gray-60;
+  margin: 0 10px;
+}
+
+.imx-ListViewItem {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*#endregion*/
+
+/* #region MatCard styles */
+
+.mat-mdc-card {
+  .mat-mdc-card-title {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  mat-card-actions {
+    margin: 0 !important;
+
+    .mat-mdc-button {
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* #endregion */
+
+/* #region OpsWeb styles */
+
+.imx-ops-DatePosition {
+  margin: 10px;
+  position: relative;
+  text-align: right;
+  right: 0;
+  font-size: 12px;
+}
+
+.imx-ops-ElementStyle {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.tableHeader {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: $iris-blue;
+  color: $white;
+}
+
+.imx-ops-tile {
+  display: inline-block;
+  margin-right: 2em;
+  width: 500px;
+  height: 400px;
+  border: solid 1px $color-gray-30;
+  margin-bottom: 1em;
+  vertical-align: top;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.imx-ops-fillTile {
+  top: 5em;
+  left: 1em;
+  right: 1em;
+  bottom: 1em;
+  width: auto;
+  z-index: 50;
+  height: auto;
+  border: solid 1px $color-gray-30;
+  display: block;
+  position: fixed;
+  flex-direction: none;
+  background-color: $white;
+}
+
+.imx-ops-tile-large {
+  display: inline-block;
+  margin-right: 2em;
+  width: 700px;
+  height: 400px;
+  border: solid 1px $color-gray-30;
+  margin-bottom: 1em;
+  vertical-align: top;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.imx-ops-table-border {
+  margin-right: 2em;
+  width: 700px;
+  height: 600px;
+  border: solid 1px $color-gray-30;
+  margin-bottom: 1em;
+  vertical-align: top;
+}
+
+.imx-ops-table-border h2 {
+  font-size: 2em;
+  background-color: #efefef;
+  margin: 0;
+  padding: 0.5rem;
+  color: $black;
+}
+
+.imx-ops-tile h2 {
+  font-size: 2em;
+  background-color: $white;
+  margin: 0;
+  padding: 0.5rem;
+  color: $iris-blue;
+}
+
+.imx-ops-tile-large h2 {
+  font-size: 2em;
+  background-color: $white;
+  margin: 0;
+  padding: 0.5rem;
+  color: $iris-blue;
+}
+
+.imx-ops-tile:hover {
+  border-color: $color-gray-60;
+}
+
+.imx-ops-tile-inner {
+  padding: 0 0.5rem;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.imx-ops-tile-inner > div {
+  padding: 5px;
+}
+
+.imx-ops-tile-innerBottom {
+  padding: 0 0.5rem;
+  flex-direction: row;
+}
+
+.imx-ops-tile-innerBottom > .ButtonBar > button {
+  margin: 5px;
+}
+
+.imx-ops-PasscodeButtonBar {
+  clear: both;
+  width: auto;
+  padding-bottom: 8px;
+
+  .imx-button {
+    margin-top: 4px;
+    font-size: 16px;
+  }
+}
+
+.contentBounds {
+  max-height: 400px;
+}
+
+@media screen and (max-height: 650px) {
+  .contentBounds {
+    max-height: 200px;
+  }
+}
+
+.imx-colorbase3 {
+  color: $iris-blue;
+}
+
+.imx-underlined {
+  text-decoration: underline;
+}
+
+.imx-ops-webstart {
+  margin-top: 15px;
+}
+
+.imx-ops-webstart > * {
+  display: block;
+  margin-bottom: 65px;
+}
+
+.imx-ops-webstart .imx-ops-category {
+  height: 20px;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.83;
+  letter-spacing: normal;
+}
+
+.imx-loginPage .imx-loginFormcontainer h1 {
+  padding: 0;
+}
+
+.imx-content-header {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5px;
+}
+
+imx-service-availability .mat-mdc-card {
+  width: 411px;
+  margin-bottom: 56px;
+
+  .mat-mdc-card-content {
+    display: flex;
+    padding: 24px;
+
+    button {
+      flex: 0 0 auto;
+      align-self: center;
+      margin-right: 26px;
+    }
+
+    span:first-child {
+      text-transform: uppercase;
+      color: $black-7;
+      margin-bottom: 5px;
+    }
+
+    span {
+      display: block;
+    }
+  }
+}
+
+/*#endregion*/
+
+/* #region SystemOverview styles */
+$thresholdExceededColor: $color-orange-60;
+
+imx-system-overview {
+  display: block;
+  margin-top: 25px;
+
+  button.mat-icon-button {
+    max-height: 30px;
+    line-height: 30px;
+    max-width: 35px;
+  }
+
+  .mat-icon-button .icon-scrolldown::before {
+    position: relative;
+    top: -5px;
+    left: -2px;
+  }
+
+  .imx-system-overview-name {
+    min-width: 360px;
+    padding-left: 10px;
+  }
+
+  .imx-system-overview-value {
+    font-weight: 600;
+  }
+
+  .imx-system-header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .imx-system-subtitle,
+  .imx-system-title {
+    display: block;
+  }
+
+  .imx-system-title {
+    font-size: 20px;
+    font-weight: 600;
+    flex: 1 1 auto;
+  }
+
+  .imx-system-subtitle {
+    font-size: 14px;
+    margin-bottom: 27px;
+  }
+
+  .imx-system-actions {
+    color: $iris-blue;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    flex: 1 1 auto;
+    text-align: right;
+
+    > span {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .imx-threshold-exceeded {
+    color: $color-red-60;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .imx-threshold-exceeded-label {
+    font-weight: 600;
+    font-size: 15px;
+
+    .eui-icon {
+      padding-right: 10px;
+    }
+  }
+
+  .imx-recommendedValue-exceeded {
+    color: $thresholdExceededColor;
+  }
+
+  .example-tooltip-red {
+    font-size: 9px;
+  }
+}
+
+.example-tooltip-red {
+  font-size: 32px;
+}
+
+/* #region special Grid styles */
+.imx_ColumnHeader.mat-column-DPRJournalSummary button,
+.imx_ColumnHeader.mat-column-UID_DPRShell button,
+.imx_ColumnHeader.mat-column-UID_Job button,
+.imx_ColumnHeader.mat-column-UID_Tree button {
+  margin-left: 5px;
+}
+/*#endregion*/
+
+/* #region ObjectHistory styles*/
+imx-object-history {
+  display: block;
+
+  .imx-viewmode-selector {
+    display: inline;
+    font-size: 14px;
+  }
+
+  .imx-loader-hidden {
+    visibility: hidden;
+  }
+}
+.grid-title-inline,
+.grid-title-inline > h1 {
+  display: inline;
+  margin-right: 10px;
+}
+
+.grid-title-inline-leftelem {
+  margin-top: 1.22em;
+}
+
+/*#endregion ObjectHistory styles*/
+
+/* #region ObjectOverview styles*/
+
+.imx-object-overview-tab-text {
+  font-size: 18px;
+}
+
+/*#endregion ObjectOverview styles*/
+
+.eui-dark-theme {
+  .page {
+    color: $color-gray-5;
+    background-color: $color-gray-80;
+  }
+  .pageContent {
+    color: $color-gray-5;
+    background-color: $color-gray-80;
+  }
+  .imx-service-availability .mat-mdc-card {
+    color: $color-gray-5;
+  }
+
+  imx-object-history-timeline {
+    background-color: $color-gray-80;
+  }
+}
+
+.eui-contrast-theme {
+  .page {
+    color: $color-gray-0;
+    background-color: $color-gray-100;
+  }
+  .pageContent {
+    color: $color-gray-0;
+    background-color: $color-gray-100;
+  }
+  .imx-service-availability .mat-mdc-card {
+    color: $color-gray-0;
+  }
+
+  imx-object-history-timeline {
+    background-color: $color-gray-80;
+  }
+}

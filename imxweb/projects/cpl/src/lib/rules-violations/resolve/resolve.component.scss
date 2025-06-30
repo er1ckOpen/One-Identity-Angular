@@ -1,0 +1,17 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+
+.item {
+  flex-grow: 1;
+  padding-top: 1em;
+}
+
+.subtext {
+  font-size: small;
+  font-style: italic;
+  color: $black_9;
+  margin-bottom: 10px;
+}
+
+li.entllose {
+  list-style-type: initial;
+}

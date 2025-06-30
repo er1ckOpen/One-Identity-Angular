@@ -1,0 +1,15 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: 100%);
+}
+
+.attestationRun-pendingapprovers-content {
+  @include flex-column-container-fill;
+  overflow-y: auto;
+}
+
+.mat-mdc-card {
+  margin: 20px;
+  overflow-y: auto;
+}

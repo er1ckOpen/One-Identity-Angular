@@ -1,0 +1,10 @@
+{
+  "name": "qer",
+  "version": "9.3.0",
+  "private": true,
+  "dependencies": {},
+  "peerDependencies": {},
+  "bundledDependencies": [
+    "imx-api-qer"
+  ]
+}

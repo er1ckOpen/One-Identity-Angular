@@ -1,0 +1,32 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  .imx-shop-content-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  .heading-wrapper {
+    display: flex;
+    margin-bottom: 16px;
+
+    h2 {
+      margin: 6px 0 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :host {
+    .heading-wrapper {
+      display: block;
+    }
+  }
+}

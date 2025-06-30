@@ -1,0 +1,91 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+.product-owner-datasource-container {
+  margin: 10px 0 25px;
+
+  span {
+    display: block;
+    font-size: 12px;
+    color: $black-9;
+    padding-bottom: 2px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .imx-icon-info {
+    margin-left: 5px;
+  }
+}
+
+.imx-dynamic-content {
+  @include flex-column-container-fill();
+  :first-child {
+    height: 100%;
+    @include flex-column-container-fill();
+  }
+}
+
+:host {
+  ::ng-deep .mat-badge-small.mat-badge-overlap.mat-badge-after {
+    .mat-badge-content {
+      right: -16px;
+      background: $corbin-orange;
+    }
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .product-owner-datasource-container .imx-icon-info {
+    display: none;
+  }
+}
+
+.eui-sidesheet-actions {
+  .justify-start {
+    margin-right: auto;
+  }
+
+  button:not(:last-of-type):not(.justify-start) {
+    margin-right: 10px;
+  }
+}
+
+.imx-card {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    margin-left: 10px;
+  }
+}
+
+.imx-breakable {
+  margin-top: -10px;
+
+  > * {
+    margin-top: 10px;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .product-owner-datasource-container {
+      span {
+        color: $color-gray-10;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .product-owner-datasource-container {
+      span {
+        color: $color-gray-0;
+      }
+    }
+  }
+}

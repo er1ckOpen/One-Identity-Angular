@@ -1,0 +1,10 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: 100%, $max-width: 100%);
+}
+
+.heading-wrapper {
+  @include flex-row-container();
+  flex: 0 0 auto;
+}

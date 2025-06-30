@@ -1,0 +1,90 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/variables';
+
+ol {
+  list-style-type: none;
+}
+
+li {
+  margin: 0 0 1em 0;
+}
+
+.peers {
+  margin-left: $IMX_OrgChart_PeersMargin;
+}
+
+.reports {
+  margin-left: $IMX_OrgChart_ReportsMargin;
+}
+
+.border-outside {
+  position: relative;
+}
+
+/* connector from manager to current identity */
+.border-container {
+  position: absolute;
+  top: 0;
+  bottom: 20px;
+  left: $IMX_OrgChart_HalfPhotoSize;
+  width: $IMX_OrgChart_Width;
+  border-style: dotted;
+  border-width: 0 0 $IMX_OrgChart_BorderWidth $IMX_OrgChart_BorderWidth;
+  border-color: gray;
+}
+
+/* connector from current identity to its first report */
+.border-container-reports {
+  position: absolute;
+  top: -20px;
+  left: $IMX_OrgChart_BorderContainerReportsLeft;
+  width: $IMX_OrgChart_Width;
+  height: $IMX_Identity_PhotoSize;
+  border-style: dotted;
+  border-width: 0 0 $IMX_OrgChart_BorderWidth $IMX_OrgChart_BorderWidth;
+  border-color: gray;
+}
+
+/* connector from one report to the next */
+.connector-reports {
+  position: absolute;
+  top: 0;
+  left: $IMX_OrgChart_ConnectorReportsLeft;
+  width: 10px;
+  bottom: 0;
+  border-style: dotted;
+  border-width: 0 0 0 $IMX_OrgChart_BorderWidth;
+  border-color: gray;
+}
+
+.eui-dark-theme {
+  :host {
+    .border-container {
+      border-color: $color-gray-5;
+    }
+
+    .connector-reports {
+      border-color: $color-gray-5;
+    }
+
+    .border-container-reports {
+      border-color: $color-gray-5;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .border-container {
+      border-color: $color-gray-0;
+    }
+
+    .connector-reports {
+      border-color: $color-gray-0;
+    }
+
+    .border-container-reports {
+      border-color: $color-gray-0;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .imx-card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .imx-list-container {
+    overflow: auto;
+    margin-bottom: 10px;
+    .mat-mdc-list-option{
+      min-height: 48px;
+      padding-left: 0;
+    }
+  }
+}
+

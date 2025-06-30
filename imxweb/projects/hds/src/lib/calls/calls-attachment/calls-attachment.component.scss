@@ -1,0 +1,103 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host{
+  @include flex-column-container-fill();
+}
+
+.calls-attachment {
+  @include flex-column-container($height: 100%);
+  position: relative;
+  gap: 20px;
+
+  .mat-mdc-card {
+    @include flex-column-container($height: 100%);
+    gap: 10px;
+    border: 1px solid rgba($color-gray-100, 0.12);
+    margin: 3px;
+  }
+
+  &__information {
+    @include flex-column-container($height: 100%);
+    justify-content: center;
+    background-color: $color-blue-10;
+    border: 1px solid $color-blue-20;
+    border-radius: 4px;
+    gap: 20px;
+
+    .static-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-blue-40;
+      opacity: 0.6;
+      gap: 20px;
+      h2 {
+        width: 310px;
+        font-size: 48px;
+        font-weight: 700;
+      }
+    }
+
+    .file-size {
+      display: flex;
+      justify-content: center;
+      color: $color-blue-60;
+      font-size: 14px;
+
+      li {
+        list-style: disc;
+      }
+    }
+  }
+
+  &__attachments-tree {
+    height: 100%;
+    &--hidden {
+      display: none;
+    }
+  }
+
+  .strong {
+    font-weight: 600;
+  }
+
+  
+  .loading-overlay {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-gray-100, 0.32);
+  }
+}
+:host {
+  .imx-tree-root > eui-icon {
+    margin-right: 10px;
+  }
+}
+
+// Theming
+
+.eui-dark-theme {
+  :host {
+    .calls-attachment {
+      &__information {
+        background-color: $color-blue-90;
+        border: 1px solid $color-blue-80;
+        .file-size,
+        .static-text {
+          color: $color-gray-0;
+        }
+      }
+      &__new-folder {
+        .mat-primary {
+          color: $color-gray-0;
+        }
+      }
+    }
+  }
+}

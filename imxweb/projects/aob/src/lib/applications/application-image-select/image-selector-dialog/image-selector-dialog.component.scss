@@ -1,0 +1,15 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+.mat-mdc-dialog-content {
+  @include flex-column-container();
+  align-items: center;
+
+  > span {
+    font-size: 20px;
+  }
+}
+
+.imx-hidden-element {
+  display: none;
+}

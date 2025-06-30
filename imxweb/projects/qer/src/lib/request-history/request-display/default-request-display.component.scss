@@ -1,0 +1,36 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+:host {
+  display: block !important;
+}
+.imx-main-container {
+  display: flex;
+  align-items: center;
+}
+
+.imx-product {
+  margin-right: 5px;
+}
+
+.imx-product-priority {
+  font-size: smaller;
+  font-weight: bold;
+  font-style: italic;
+}
+
+@mixin product-details() {
+  font-size: smaller;
+  color: $black-9;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 50vw;
+}
+
+.imx-product-detail {
+  @include product-details();
+
+  &-block {
+    @include product-details();
+    display: block;
+  }
+}

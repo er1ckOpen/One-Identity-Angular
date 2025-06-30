@@ -1,0 +1,25 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+.imx-request-detail {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-request-detail {
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-request-detail {
+      background-color: $color-gray-100;
+    }
+  }
+}

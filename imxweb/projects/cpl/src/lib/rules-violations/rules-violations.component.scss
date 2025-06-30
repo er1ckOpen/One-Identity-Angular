@@ -1,0 +1,30 @@
+@import 'base/mixins';
+
+.heading-wrapper {
+  @include flex-row-container();
+  flex: 0 0 auto;
+}
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: inherit, $max-width: 100%);
+}
+
+.imx-rules-violations-page {
+  @include flex-column-container($overflow: hidden);
+  background-color: inherit;
+  flex: 1 1 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .imx-rules-violations-page {
+    .heading-wrapper {
+      display: block;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  ::ng-deep .mat-column-decision {
+    display: none;
+  }
+}

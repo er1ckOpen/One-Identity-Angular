@@ -1,0 +1,38 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($height: 100%);
+}
+
+.imx-content {
+  @include flex-column-container($height: 100%);
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin-bottom: -16px;
+}
+
+.imx-card {
+  margin: 0;
+  margin-bottom: -16px;
+}
+
+@media screen and (max-width: 480px) {
+  .imx-button-bar {
+    flex-direction: column;
+    display: block;
+    text-align: center;
+
+    button {
+      width: 100%;
+      margin-bottom: 5px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .justify-start {
+      margin-right: 0;
+    }
+  }
+}

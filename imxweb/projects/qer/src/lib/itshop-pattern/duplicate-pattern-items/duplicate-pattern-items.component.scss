@@ -1,0 +1,6 @@
+@import 'base/mixins';
+
+.mat-mdc-dialog-content {
+  @include flex-column-container($overflow: hidden);
+
+}

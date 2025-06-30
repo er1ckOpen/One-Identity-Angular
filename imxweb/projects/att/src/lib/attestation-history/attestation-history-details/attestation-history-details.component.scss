@@ -1,0 +1,26 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  overflow: hidden;
+}
+
+.imx-property-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.eui-sidesheet-actions {
+  > * {
+    .mat-icon {
+      margin-right: 5px;
+      font-size: 24px;
+    }
+  }
+}
+.imx-attestation-history-hyperview {
+  display: flex;
+  flex-direction: column;
+}

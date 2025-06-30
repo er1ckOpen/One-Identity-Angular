@@ -1,0 +1,256 @@
+@use '@angular/material' as mat;
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container-fill();
+  min-height: 100%;
+
+  .imx-application-details-content .imx-application-details-grid.hidden {
+    display: none;
+  }
+}
+
+.imx-application-details-content {
+  @include flex-row-container-fill();
+  overflow: hidden;
+
+  imx-busy-indicator {
+    flex: 0 0 0;
+  }
+
+  .imx-application-details-grid {
+    @include flex-row-container($max-width: 1500px, $max-height: 800px, $overflow: auto);
+    flex-wrap: wrap;
+    padding: 16px 24px;
+
+    > .mat-mdc-card {
+      background-color: transparent;
+    }
+
+    .mat-mdc-card-title {
+      font-size: 18px;
+      line-height: 36px;
+    }
+
+    .mat-divider-horizontal {
+      width: 50px;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.imx-application-properties {
+  flex: 0 0 33%;
+  min-width: 200px;
+  box-shadow: none;
+
+  .mat-mdc-card-content {
+    @include flex-column-container();
+    margin-bottom: -15px;
+
+    > * {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.imx-application-property-multi {
+  @include flex-column-container();
+
+  > span {
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  > .mat-mdc-button {
+    line-height: 1.3rem;
+    align-self: flex-start;
+  }
+}
+
+li {
+  list-style-type: none;
+  margin: 10px;
+
+  .mat-mdc-card {
+    @include flex-row-container();
+
+    > .imx-card-title {
+      font-size: 16px;
+      flex: 1;
+      margin-left: 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
+.imx-application-state {
+  @include flex-row-container();
+
+  flex-wrap: wrap;
+  flex: 0 0 64%;
+  align-content: flex-start;
+  box-shadow: none;
+  padding: 0;
+
+  > .mat-mdc-card {
+    background-color: transparent;
+  }
+}
+
+.imx-application-publish {
+  flex: 0 0 51%;
+  min-width: 220px;
+  box-shadow: none;
+  padding-left: 5px;
+  padding-right: 0;
+
+  .mat-mdc-card-content {
+    @include flex-row-container();
+
+    align-items: center;
+  }
+
+  .imx-application-unpublished-state,
+  .imx-application-willbepublished-state,
+  .imx-application-published-state {
+    @include flex-row-container();
+    align-items: center;
+    font-weight: 600;
+    font-size: 12px;
+
+    .eui-icon,
+    .mat-icon {
+      margin-right: 6px;
+    }
+  }
+
+  .imx-application-publish-date {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+}
+
+.imx-application-progress {
+  flex: 0 0 48%;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+
+  .mat-mdc-card-title {
+    line-height: 45px;
+  }
+
+  .imx-application-progress-step {
+    margin-bottom: 8px;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  .mat-mdc-card-content > div {
+    @include flex-row-container();
+
+    align-items: center;
+  }
+}
+
+.imx-application-additionalDetails {
+  flex: 0 0 100%;
+  box-shadow: none;
+  overflow: hidden;
+
+  .mat-mdc-card-title {
+    line-height: 45px;
+  }
+
+  .mat-mdc-card-content {
+    @include flex-row-container();
+
+    flex-wrap: wrap;
+
+    imx-column-info,
+    imx-application-property {
+      flex: 0 0 33%;
+      min-width: 200px;
+      padding-right: 21px;
+    }
+  }
+}
+
+.imx-multivalue-item {
+  margin: 10px 0;
+}
+
+//Themeing
+:host {
+  .imx-application-property-multi {
+    > span {
+      color: $color-gray-60;
+    }
+  }
+
+  .imx-application-unpublished-state,
+  .imx-application-willbepublished-state {
+    color: $color-orange-60;
+  }
+
+  .imx-application-published-state {
+    color: $color-green-60;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-application-property-multi {
+      > span {
+        color: $color-gray-10;
+      }
+    }
+
+    .imx-application-publish {
+      .imx-application-unpublished-state,
+      .imx-application-willbepublished-state {
+        color: $color-orange-40;
+      }
+
+      .imx-application-published-state {
+        color: $color-green-40;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-application-property-multi {
+      > span {
+        color: $color-gray-0;
+      }
+    }
+
+    .imx-application-content {
+      background-color: $color-gray-90;
+    }
+
+    .mat-mdc-card {
+      border-color: $color-gray-90;
+    }
+
+    .imx-application-publish {
+      .imx-application-unpublished-state,
+      .imx-application-willbepublished-state {
+        color: $color-orange-20;
+      }
+
+      .imx-application-published-state {
+        color: $color-green-20;
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container-fill();
+
+  .mat-mdc-outlined-button,
+  .mat-mdc-unelevated-button {
+    @include image-button-icon();
+  }
+
+  .recommendation-approve-icon {
+    color: $color-green-60;
+  }
+
+  .recommendation-deny-icon {
+    color: $color-red-60;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    ::ng-deep .mat-column-OrderDate,
+    ::ng-deep .mat-column-decision {
+      display: none;
+    }
+  }
+
+  .toggle-wrapper {
+    /* so that the tooltip on the toggle is centered */
+    flex-grow: 0;
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .imx-badge-container {
+    margin: 5px 5px 5px 0;
+  }
+
+  imx-data-source-toolbar {
+    margin-top: 8px;
+  }
+
+  .imx-data-tree-container {
+    overflow: hidden;
+    background-color: $color-gray-0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-data-tree-container {
+      background-color: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-data-tree-container {
+      background-color: $color-gray-100;
+    }
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}

@@ -1,0 +1,68 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import '../new-request-global.scss';
+@import 'base/mixins';
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .imx-nav-bar {
+    margin: 0 24px;
+
+    a.mat-mdc-tab-link:hover {
+      text-decoration: none;
+    }
+  }
+
+  .imx-button-bar-transparent {
+    margin: 0 24px 24px;
+  }
+}
+
+// Theming
+:host {
+  background-color: $color-gray-0;
+
+  .imx-nav-bar {
+    a.mat-mdc-tab-link:hover {
+      color: initial;
+    }
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    background-color: unset;
+
+    .imx-nav-bar {
+      background-color: $color-gray-70;
+
+      a.mat-mdc-tab-link:hover {
+        color: unset;
+        background-color: $color-gray-60;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: unset;
+
+    .imx-nav-bar {
+      background-color: $color-gray-100;
+
+      a.mat-mdc-tab-link:hover {
+        color: unset;
+        background-color: $color-gray-80;
+      }
+    }
+
+    .primary-action:hover {
+      @include ease-transition;
+      background-color: $color-orange-40;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden);
+}
+
+.eui-sidesheet-content {
+  @include flex-column-container($height: 100%);
+  padding: 0;
+}
+
+.imx-runs-grid {
+  @include flex-column-container-fill;
+}
+
+.mat-mdc-card-content {
+  display: flex;
+}
+
+.imx-info-grid-view {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 10px;
+}

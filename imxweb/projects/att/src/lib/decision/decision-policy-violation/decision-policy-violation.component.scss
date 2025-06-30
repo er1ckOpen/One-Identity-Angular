@@ -1,0 +1,33 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+.heading-wrapper {
+  @include flex-row-container();
+  flex: 0 0 auto;
+}
+.mat-mdc-card {
+  padding-left: 24px;
+  padding-right: 24px;
+
+  &-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 17px;
+  }
+}
+
+.imx-container > * {
+  margin-bottom: 10px;
+}
+
+.imx-label {
+  color: $color-gray-40;
+  font-size: 80%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.imx-risk-reduction-item {
+  list-style-type: circle;
+  margin-left: 20px;
+}

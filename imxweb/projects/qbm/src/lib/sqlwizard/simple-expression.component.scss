@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.value-list {
+  width: 100%;
+}
+
+.value-box {
+  display: flex;
+  align-items: center;
+}
+
+.imx-column-container {
+  display: flex;
+  align-items: baseline;
+  column-gap: 10px;
+}

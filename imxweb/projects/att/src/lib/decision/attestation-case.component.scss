@@ -1,0 +1,28 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.imx-attestation-case-information,
+.imx-attestation-case-workflow,
+.imx-attestation-case-loss-preview,
+.imx-attestation-case-compliance-violation {
+  overflow-y: auto;
+  flex: 1 1 auto;
+
+  .imx-property-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+}
+.imx-attestation-case-hyperview {
+  display: flex;
+  flex-direction: column;
+}
+.imx-attestation-case-loss-preview {
+  margin: 0 15px;
+}

@@ -1,0 +1,5 @@
+@import 'base/mixins';
+
+.eui-sidesheet-actions {
+  @include eui-sidesheet-actions__mixin_01($flex-wrap: wrap, $margin-left: 10px, $padding: 16px 20px);
+}

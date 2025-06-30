@@ -1,0 +1,32 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  .imx-sidesheet-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .imx-errormessages {
+    margin-bottom: 10px;
+
+    ::ng-deep .imx-message-content {
+      font-size: 14px;
+    }
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    background-color: $color-gray-80;
+    color: $color-gray-2;
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-100;
+    color: $color-gray-2;
+  }
+}

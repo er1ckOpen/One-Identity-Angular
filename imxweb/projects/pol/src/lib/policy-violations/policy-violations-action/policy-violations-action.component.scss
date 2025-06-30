@@ -1,0 +1,16 @@
+@import 'base/mixins';
+
+.eui-sidesheet-content {
+  @include flex-column-container($overflow: hidden, $height: 100%);
+  flex: 1;
+}
+
+.eui-sidesheet-actions.mat-mdc-card {
+  margin: 16px 32px;
+}
+
+.imx-policy-violation-content {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}

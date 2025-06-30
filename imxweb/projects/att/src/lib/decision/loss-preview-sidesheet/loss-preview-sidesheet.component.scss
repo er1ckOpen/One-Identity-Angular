@@ -1,0 +1,12 @@
+:host {
+  .table-wrapper {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  // Override css properties
+  ::ng-deep .imx-attestation-case-loss-preview {
+    margin: inherit !important;
+    height: fit-content !important;
+  }
+}

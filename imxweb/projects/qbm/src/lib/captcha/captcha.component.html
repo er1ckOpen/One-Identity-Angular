@@ -1,0 +1,46 @@
+@if (!captchaSvc.isReCaptchaV3) {
+  <eui-alert type="info" [condensed]="true">
+    <span>{{ LdsCaptchaInfo | translate }}</span>
+  </eui-alert>
+  <div class="captcha-container">
+    @if (captchaSvc.isBuiltIn) {
+      <img [src]="appConfig.BaseUrl + '/' + builtInCaptchaUrl + captchaSvc.builtInUrlParameter" [alt]="'#LDS#Captcha image' | translate" />
+    } @else {
+      <p translate>The CAPTCHA configuration is unsupported.</p>
+    }
+    <mat-form-field>
+      <input
+        matInput
+        class="imx-input-login"
+        placeholder="{{ '#LDS#Enter characters from the image' | translate }}"
+        type="text"
+        [(ngModel)]="captchaSvc.Response"
+        [attr.data-imx-identifier]="'captcha-code'"
+        [required]="!captchaSvc.isReCaptchaV3"
+      />
+    </mat-form-field>
+  </div>
+}
+
+@if (showAllButtons) {
+  <div class="buttonbar">
+    @if (!captchaSvc.isReCaptchaV3) {
+      <button mat-flat-button (click)="captchaSvc.ReinitCaptcha()">
+        {{ '#LDS#Refresh image' | translate }}
+      </button>
+    }
+    <button
+      mat-flat-button
+      class="imx-next-button"
+      [disabled]="captchaSvc.isReCaptchaV3 ? disableButton : disableButton || !captchaSvc.Response"
+      (click)="onNext()"
+    >
+      {{ '#LDS#Next' | translate }}
+    </button>
+    @if (showBackButton) {
+      <button mat-flat-button (click)="onBack()">
+        {{ '#LDS#Back' | translate }}
+      </button>
+    }
+  </div>
+}

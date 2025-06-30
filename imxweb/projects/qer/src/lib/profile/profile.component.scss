@@ -1,0 +1,43 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  .imx-mail-description {
+    font-size: smaller;
+    font-style: italic;
+  }
+}
+
+.imx-mail-info {
+  margin-top: 20px;
+}
+
+imx-ext {
+  height: 100%;
+}
+
+:host {
+  .imx-mail-description {
+    color: $color-gray-40;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-mail-description {
+      color: $color-gray-10;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-mail-description {
+      color: $color-gray-0;
+    }
+  }
+}

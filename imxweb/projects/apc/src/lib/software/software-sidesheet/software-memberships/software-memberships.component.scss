@@ -1,0 +1,23 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container-fill();
+}
+
+.hidden {
+  display: none;
+}
+
+.imx-table-content {
+  @include flex-column-container-fill();
+}
+
+imx-busy-indicator {
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+imx-selected-elements {
+  margin-left: 10px;
+}

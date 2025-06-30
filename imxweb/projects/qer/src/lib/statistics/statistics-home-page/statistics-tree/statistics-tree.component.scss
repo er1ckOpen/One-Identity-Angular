@@ -1,0 +1,11 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  height: 100%;
+  .imx-tree-root {
+    display: flex;
+    eui-icon {
+      margin-right: 5px;
+    }
+  }
+}

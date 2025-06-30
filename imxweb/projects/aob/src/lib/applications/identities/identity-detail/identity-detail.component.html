@@ -1,0 +1,28 @@
+<imx-data-view-toolbar [dataSource]="dataSource" [showSettings]="false"></imx-data-view-toolbar>
+<imx-data-view-auto-table [dataSource]="dataSource" mode="manual">
+  <ng-container [matColumnDef]="DisplayColumns.DISPLAY_PROPERTYNAME">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]?.Display }}
+    </th>
+    <td mat-cell *matCellDef="let item" role="gridcell">
+      <span>{{ item.GetEntity().GetDisplay() }}</span>
+    </td>
+  </ng-container>
+  <ng-container [matColumnDef]="entitySchema.Columns.OrderState.ColumnName">
+    <th mat-header-cell *matHeaderCellDef>{{ entitySchema.Columns.OrderState.Display }}</th>
+    <td mat-cell *matCellDef="let item" role="gridcell">
+      <div>{{ item.OrderState?.Column.GetDisplayValue() }}</div>
+    </td>
+  </ng-container>
+  <ng-container [matColumnDef]="entitySchema.Columns.ValidUntil.ColumnName">
+    <th mat-header-cell *matHeaderCellDef>{{ entitySchema.Columns.ValidUntil.Display }}</th>
+    <td mat-cell *matCellDef="let item" role="gridcell">
+      <div *ngIf="item.ValidUntil.value" class="imx-badge-container">
+        <eui-badge>
+          {{ translateProvider.GetColumnDisplay('ValidUntil', entitySchema) + ': ' + (item.ValidUntil.value | shortDate) }}
+        </eui-badge>
+      </div>
+    </td>
+  </ng-container>
+</imx-data-view-auto-table>
+<imx-data-view-paginator [dataSource]="dataSource"></imx-data-view-paginator>

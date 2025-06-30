@@ -1,0 +1,324 @@
+<div class="imx-data-source-toolbar-container" *ngIf="showDataSourceToolbar" [ngClass]="{ 'themed-style': useThemedStyle }">
+  <div class="imx-data-source-toolbar" [ngClass]="{ 'no-toolbar-options-visible': optionset.size === 0 }">
+    <div class="imx-data-source-toolbar-left" *ngIf="!hideCustomToolbar">
+      <ng-content select="imx-data-source-toolbar-custom"></ng-content>
+    </div>
+    <div class="imx-data-source-toolbar-middle">
+      <eui-search
+        *ngIf="optionset.has('search')"
+        class="imx-data-source-toolbar-search"
+        data-imx-identifier="dst-eui-search"
+        [placeholder]="searchTerms.length ? ('#LDS#Search' | translate) : searchBoxText ? searchBoxText : ('#LDS#Search' | translate)"
+        [searchControl]="searchControl"
+        (keydown.enter)="addSearchFilter()"
+      >
+      </eui-search>
+    </div>
+    <div class="imx-data-source-toolbar-right">
+      <button
+        type="button"
+        mat-icon-button
+        [matMenuTriggerFor]="sortMenu"
+        matTooltip="{{ '#LDS#Action Sort' | translate }}"
+        *ngIf="hasSortFunction && hasSortOptions"
+        data-imx-identifier="dst-button-sort"
+      >
+        <eui-icon icon="sort"></eui-icon>
+      </button>
+      <button
+        *ngIf="canShowFilterWizard()"
+        type="button"
+        mat-icon-button
+        (click)="showFilterWizard()"
+        matTooltip="{{ '#LDS#Action Filter' | translate }}"
+        data-imx-identifier="dst-button-filter-wizard"
+      >
+        <eui-icon icon="filter"></eui-icon>
+      </button>
+      <button
+        type="button"
+        mat-icon-button
+        [matMenuTriggerFor]="groupByMenu"
+        matTooltip="{{ '#LDS#Action Group' | translate }}"
+        *ngIf="settings?.groupData && optionset.has('groupBy')"
+        data-imx-identifier="dst-button-groupby"
+      >
+        <mat-icon>group_work</mat-icon>
+      </button>
+      <button
+        type="button"
+        mat-icon-button
+        [matMenuTriggerFor]="settingsMenu"
+        matTooltip="{{ '#LDS#Settings' | translate }}"
+        *ngIf="(hasViewSettings || canExport || canSave) && optionset.has('settings') && initalView === 'table'"
+        data-imx-identifier="dst-button-settings"
+      >
+        <eui-icon icon="settings"></eui-icon>
+      </button>
+      <mat-button-toggle-group
+        [hideSingleSelectionIndicator]="true"
+        (change)="onViewSelectionChanged($event)"
+        *ngIf="optionset.has('selectedViewGroup')"
+        data-imx-identifier="dst-togglegroup-views"
+      >
+        <mat-button-toggle
+          *ngFor="let view of views; let index = index"
+          [value]="view"
+          [checked]="view === initalView"
+          [attr.data-imx-identifier]="'dst-togglegroup-views-button-' + view"
+        >
+          <eui-icon [icon]="viewIcons[index]"></eui-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      <eui-icon
+        icon="warning"
+        class="imx-icon-warning"
+        *ngIf="dataSourceIsLimitReached"
+        matTooltip="{{
+          '#LDS#There are too many results for this search. Narrow the search query with more specific keywords.' | translate
+        }}"
+        data-imx-identifier="dst-to-many-seach-results-icon"
+      >
+      </eui-icon>
+    </div>
+  </div>
+
+  <mat-menu #sortMenu="matMenu" class="imx-sort-menu">
+    <eui-select
+      data-imx-identifier="dst-sortmenu-select"
+      [hideClearButton]="true"
+      smallInput="true"
+      [label]="'#LDS#Sort by column' | translate"
+      [inputControl]="selectedSortControl"
+      [feedbackMessages]="sortFeedbackMessages"
+      [options]="sortOptions"
+      [filterFunction]="sortOptionsFilter"
+      [attr.attr.aria-label]="'#LDS#Sort by column' | translate"
+      (click)="$event.stopPropagation()"
+      (selectionChange)="selectSort($event.length ? $event[0] : $event)"
+    >
+    </eui-select>
+    <div class="imx-sort-controls">
+      <mat-slide-toggle
+        color="primary"
+        [(ngModel)]="isDescending"
+        (click)="$event.stopPropagation()"
+        (change)="toggleSort()"
+        data-imx-identifier="dst-button-sortmenu-toggle-sort"
+      >
+        <span>{{ (isDescending ? '#LDS#Descending' : '#LDS#Ascending') | translate }}</span>
+      </mat-slide-toggle>
+      <div class="imx-sort-buttons">
+        <button mat-stroked-button (click)="clearSort()" [disabled]="!canClearSort" data-imx-identifier="dst-button-sortmenu-clear-sort">
+          <span>{{ '#LDS#Clear sorting' | translate }}</span>
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="applySort()"
+          [disabled]="!canApplySort"
+          data-imx-identifier="dst-button-sortmenu-apply-sort"
+        >
+          <span>{{ '#LDS#Apply sorting' | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </mat-menu>
+
+  <mat-menu #groupByMenu="matMenu">
+    <button mat-menu-item disabled="true">
+      <span>{{ '#LDS#Group by' | translate }}</span>
+    </button>
+    <mat-divider></mat-divider>
+    <div
+      *ngFor="let group of settings?.groupData?.groups"
+      [attr.data-imx-identifier]="'dst-groupbymenu-' + group?.property?.Property?.ColumnName"
+    >
+      <button mat-menu-item (click)="onGroupSelected(group)">
+        <span>{{ getGroupColumnDisplay(group) }}</span>
+      </button>
+    </div>
+    <div
+      *ngFor="let category of settings?.groupData?.groupingCategories"
+      [attr.data-imx-identifier]="'dst-groupbymenuNested-' + category?.property?.Display"
+    >
+      <mat-menu #groupByNestedMenu="matMenu">
+        <div
+          *ngFor="let group of category.groups"
+          [attr.data-imx-identifier]="'dst-groupbymenuNested-' + category?.property?.Display + getGroupColumnDisplay(group)"
+        >
+          <button mat-menu-item (click)="onGroupSelected(group, category)">
+            <span>{{ getGroupColumnDisplay(group) }}</span>
+          </button>
+        </div>
+      </mat-menu>
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="groupByNestedMenu"
+        [attr.data-imx-identifier]="'dst-groupbymenu-' + category?.property?.Display"
+      >
+        <span>{{ category.property.Display }}</span>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <button
+      mat-menu-item
+      (click)="clearGroupedBy()"
+      [disabled]="!settings?.groupData?.currentGrouping"
+      data-imx-identifier="dst-button-groupbymenu-clear-groupby"
+    >
+      <span class="imx-info">{{ '#LDS#Clear grouping' | translate }}</span>
+    </button>
+  </mat-menu>
+
+  <mat-menu #settingsMenu="matMenu">
+    <button
+      *ngIf="settings?.dataModel?.AllowExport && settings?.exportMethod"
+      mat-menu-item
+      (click)="openExportSidesheet()"
+      data-imx-identifier="dst-menu-button-export"
+    >
+      {{ '#LDS#Export data' | translate }}
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="!!optionalColumns?.length"
+      (click)="updateAdditional()"
+      data-imx-identifier="dst-menu-button-additional-table-columns"
+    >
+      {{ '#LDS#Additional columns' | translate }}
+    </button>
+    <button mat-menu-item *ngIf="settings?.viewConfig" (click)="saveConfig()" data-imx-identifier="dst-menu-button-save-view">
+      <span>{{ '#LDS#Save current view' | translate }}</span>
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="settings?.viewConfig"
+      [disabled]="!hasSavedConfigs"
+      #savedConfigsTrigger="matMenuTrigger"
+      [matMenuTriggerFor]="savedConfigs"
+      data-imx-identifier="dst-menu-button-load-view"
+    >
+      <span>{{ '#LDS#Saved views' | translate }}</span>
+    </button>
+    <button mat-menu-item (click)="resetViewAndTree()" data-imx-identifier="dst-menu-button-reset-view">
+      <span>{{ '#LDS#Reset view' | translate }}</span>
+    </button>
+  </mat-menu>
+
+  <mat-menu #savedConfigs="matMenu" class="dst-saved-config-menu">
+    <button
+      mat-menu-item
+      class="dst-saved-config-menu-item"
+      *ngFor="let config of settings?.viewConfig?.viewConfigs; index as i"
+      (click)="applyConfig(config)"
+      [attr.aria-label]="config?.DisplayName"
+      [attr.data-imx-identifier]="'dst-menu-button-load-item-' + i"
+    >
+      <span>{{ config?.DisplayName }}</span>
+      <div class="dst-saved-config-menu-item-action-buttons" *ngIf="!isDefaultId(config)">
+        <button
+          mat-icon-button
+          [attr.aria-label]="(isConfigDefault(config) ? '#LDS#Remove as default view' : '#LDS#Set as default view') | translate"
+          matTooltip="{{ (isConfigDefault(config) ? '#LDS#Remove as default view' : '#LDS#Set as default view') | translate }}"
+          matTooltipShowDelay="1000"
+          matTooltipPosition="before"
+          [ngClass]="{ 'imx-info': isConfigDefault(config) }"
+          (click)="toggleDefaultConfig(config); $event.stopPropagation()"
+          [attr.data-imx-identifier]="'dst-menu-button-load-item-toggle-default-' + i"
+        >
+          <eui-icon [icon]="isConfigDefault(config) ? 'star' : 'openstar'"></eui-icon>
+        </button>
+        <button
+          [disabled]="config?.IsReadOnly"
+          mat-icon-button
+          [attr.aria-label]="'#LDS#Edit name of view' | translate"
+          (click)="changeConfigName(config); $event.stopPropagation()"
+          [attr.data-imx-identifier]="'dst-menu-button-load-item-set-name-' + i"
+        >
+          <eui-icon icon="edit"></eui-icon>
+        </button>
+        <button
+          [disabled]="config?.IsReadOnly"
+          mat-icon-button
+          color="warn"
+          class="saved-config-delete"
+          [attr.aria-label]="'#LDS#Delete view' | translate"
+          (click)="removeConfigIndex(config.Id ?? '', i); $event.stopPropagation()"
+          [attr.data-imx-identifier]="'dst-menu-button-load-item-remove-' + i"
+        >
+          <eui-icon icon="delete"></eui-icon>
+        </button>
+      </div>
+    </button>
+  </mat-menu>
+
+  <div class="imx-chip-container" [ngClass]="{ 'imx-chip-container-grouped': !isStandaloneToolbar }">
+    <mat-chip-listbox
+      *ngIf="searchTerms.length"
+      class="imx-data-source-selected-filters"
+      data-imx-identifier="dst-mat-chip-list-search-terms"
+    >
+      <span>{{ '#LDS#Search by keywords' | translate }}:</span>
+      <mat-chip-option
+        [ngClass]="{ 'imx-chip-info': st?.selectedOption?.IsRegex ?? false }"
+        *ngFor="let st of searchTerms"
+        (click)="removeSearchTerm(st)"
+        [attr.data-imx-identifier]="'dst-mat-chip-search-term-chip-' + st.selectedOption?.Value ?? ''"
+      >
+        <span class="tag-name">{{ st.selectedOption?.Display }}</span>
+        <eui-icon class="imx-icon-chip-remove" icon="stop"></eui-icon>
+      </mat-chip-option>
+    </mat-chip-listbox>
+    <mat-chip-listbox
+      *ngIf="
+        ((optionset.has('filter') || optionset.has('filterTree')) && selectedFilters.length) ||
+        filterWizardExpression ||
+        selectedFilters.length ||
+        currentFilterData
+      "
+      #chipList
+      class="imx-data-source-selected-filters"
+      data-imx-identifier="dst-mat-chip-list-selected-filters"
+    >
+      <span *ngIf="filterWizardExpression || selectedFilters.length || currentFilterData">{{ '#LDS#Filter on' | translate }}:</span>
+      <mat-chip-option *ngIf="filterWizardExpression" (click)="removeFilterWizard()">
+        <span class="tag-name">{{ '#LDS#Custom filter' | translate }} ({{ filterWizardExpression?.Expression?.Expressions?.length }})</span>
+        <eui-icon class="imx-icon-chip-remove" icon="stop"> </eui-icon>
+      </mat-chip-option>
+      <mat-chip-option
+        *ngFor="let sf of selectedFilters"
+        (click)="onSelectedFilterRemoved(sf, sf.selectedOption?.Value)"
+        [attr.data-imx-identifier]="'dst-mat-chip-selected-filters-chip-' + sf.filter?.Name + '-' + sf.selectedOption?.Value"
+      >
+        <span class="tag-name">{{ sf.selectedOption?.Display ?? '' }}</span>
+        <eui-icon
+          class="imx-icon-chip-remove"
+          icon="stop"
+          [attr.data-imx-identifier]="'dst-mat-chip-selected-filters-chip-remove-' + sf.selectedOption?.Value"
+        >
+        </eui-icon>
+      </mat-chip-option>
+      <mat-chip-option *ngIf="currentFilterData" (click)="clearTreeFilter()" data-imx-identifier="dst-mat-chip-filter-tree-active">
+        <span class="tag-name">{{ filterType }}: {{ currentFilterData?.display }}</span>
+        <eui-icon class="remove" icon="stop" data-imx-identifier="dst-mat-chip-filter-tree-active-chip-remove"> </eui-icon>
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+    <mat-chip-listbox *ngIf="isSortApplied" class="imx-data-source-selected-filters" data-imx-identifier="dst-mat-chip-list-sort-item">
+      <span translate>#LDS#Sort by</span>:
+      <mat-chip-option (click)="clearSort()" [matTooltip]="'#LDS#Clear sorting' | translate" data-imx-identifier="dst-mat-chip-sort-chip">
+        <span class="tag-name">{{ currentSortColumn }}</span>
+        <eui-icon class="imx-icon-chip-remove" icon="stop"></eui-icon>
+      </mat-chip-option>
+      <button
+        mat-icon-button
+        (click)="applySort(true)"
+        data-imx-identifier="dst-mat-chip-list-sort-toggle"
+        [matTooltip]="(isSortDesc ? '#LDS#Sort ascending' : '#LDS#Sort descending') | translate"
+      >
+        <eui-icon [icon]="isSortDesc ? 'sortdown' : 'sortup'"></eui-icon>
+      </button>
+    </mat-chip-listbox>
+  </div>
+</div>

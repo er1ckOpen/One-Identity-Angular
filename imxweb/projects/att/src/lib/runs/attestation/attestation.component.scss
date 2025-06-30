@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.eui-sidesheet-content{
+  display: flex;
+  flex-direction: column;
+  .imx-attestation-history-container{
+    overflow:hidden;
+  }
+}

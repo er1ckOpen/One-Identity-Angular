@@ -1,0 +1,50 @@
+@import 'base/mixins';
+
+:host {
+  .imx-main-column {
+    flex-direction: column !important;
+  }
+}
+
+.eui-sidesheet-content {
+  @include flex-column-container();
+}
+
+.heading-wrapper {
+  @include flex-row-container();
+  flex: 0 0 auto;
+}
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: inherit, $width: inherit, $max-width: 100%);
+}
+
+.imx-policyviolation-page {
+  @include flex-column-container($overflow: hidden, $height: 100%);
+
+  div.imx-policyviolation-table {
+    @include flex-column-container($overflow: hidden, $height: inherit);
+    flex: 1 1 auto;
+
+    .imx-column-container {
+     .imx-main-column {
+        max-width: 600px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .imx-rules-violations-page {
+    .heading-wrapper {
+      display: block;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  ::ng-deep .mat-column-decision {
+    display: none;
+  }
+}

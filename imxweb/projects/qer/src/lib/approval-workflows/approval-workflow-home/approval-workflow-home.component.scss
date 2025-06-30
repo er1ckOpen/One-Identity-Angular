@@ -1,0 +1,87 @@
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  .awm-header {
+    display: flex;
+
+    h2 {
+      margin: 6px 0 40px;
+    }
+
+    .awm-right-header {
+      margin: 0 0 0 auto;
+    }
+  }
+}
+
+// Theming
+:host {
+  @include Awm-Colors();
+  .awm-left-header {
+    button {
+      color: $color-blue-60;
+
+      &:hover {
+        color: $color-orange-60;
+      }
+    }
+  }
+
+  .button-row {
+    .filled-button:hover:not(:disabled) {
+      background-color: $color-orange-60;
+      @include ease-transition;
+    }
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    @include Awm-Colors(eui-dark-theme);
+    .awm-left-header {
+      button {
+        color: $color-blue-40;
+
+        &:hover {
+          color: $color-orange-40;
+          @include ease-transition;
+        }
+      }
+    }
+
+    .button-row {
+      .filled-button:hover:not(:disabled) {
+        background-color: $color-orange-40;
+        @include ease-transition;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    @include Awm-Colors(eui-contrast-theme);
+    .awm-left-header {
+      button {
+        color: $color-blue-40;
+
+        &:hover {
+          color: $color-orange-40;
+          @include ease-transition;
+        }
+      }
+    }
+
+    .button-row {
+      .filled-button:hover:not(:disabled) {
+        background-color: $color-orange-40;
+        @include ease-transition;
+      }
+    }
+  }
+}

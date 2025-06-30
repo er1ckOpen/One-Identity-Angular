@@ -1,0 +1,65 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+imx-data-table {
+  flex-grow: 1;
+}
+
+.imx-subtext {
+  font-size: smaller;
+  color: $black-b;
+}
+
+.imx-page-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.imx-data-tree-container {
+  overflow: hidden;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.imx-table {
+  margin-top: 16px;
+}
+
+.imx-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-data-tree-container {
+      background: $color-gray-70;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-data-tree-container {
+      background: $color-gray-90;
+    }
+  }
+}

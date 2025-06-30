@@ -1,0 +1,11 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins.scss';
+
+.eui-sidesheet-content{
+  @include flex-column-container()
+}
+.eui-sidesheet-actions {
+  > * {
+    align-self: center;
+  }
+}

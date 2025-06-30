@@ -1,0 +1,5 @@
+@import 'base/mixins';
+
+.mat-mdc-outlined-button {
+  @include image-button-icon();
+}

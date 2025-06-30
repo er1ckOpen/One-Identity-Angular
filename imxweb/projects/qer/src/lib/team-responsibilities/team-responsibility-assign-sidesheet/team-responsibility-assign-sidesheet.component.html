@@ -1,0 +1,58 @@
+<div eui-sidesheet-content>
+  <imx-data-view-toolbar [dataSource]="dataSource" [showSettings]="false" [showGrouping]="false"></imx-data-view-toolbar>
+  <mat-card class="imx-margin-bottom-16">
+    <imx-data-view-selection [dataSource]="dataSource"></imx-data-view-selection>
+    <imx-data-view-auto-table
+      [dataSource]="dataSource"
+      mode="manual"
+      matSort
+      (matSortChange)="dataSource?.sortChange($event)"
+      [matSortActive]="dataSource.sortId()"
+      [selectable]="true"
+      [singleSelection]="singleSelection"
+    >
+      <ng-container [matColumnDef]="DisplayedColumns.DISPLAY_PROPERTYNAME">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ entitySchema?.Columns?.[DisplayedColumns.DISPLAY_PROPERTYNAME]?.Display }}
+        </th>
+        <td mat-cell *matCellDef="let item" role="gridcell">
+          <div data-imx-identifier="identities-tabledata-display">{{ item.GetEntity().GetDisplay() }}</div>
+          <div subtitle data-imx-identifier="identities-tabledata-description">{{ item.DefaultEmailAddress.Column.GetDisplayValue() }}</div>
+        </td>
+      </ng-container>
+      <ng-container [matColumnDef]="entitySchema.Columns.UID_Department.ColumnName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ entitySchema?.Columns?.UID_Department?.Display }}</th>
+        <td mat-cell *matCellDef="let item" role="gridcell">
+          <div data-imx-identifier="identities-tabledata-display">
+            <span>
+              {{ item.GetEntity().GetColumn('UID_Department').GetDisplayValue() }}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+    </imx-data-view-auto-table>
+    <imx-data-view-paginator [dataSource]="dataSource"></imx-data-view-paginator>
+  </mat-card>
+  <mat-card class="imx-manager-selection">
+    @if (singleSelection) {
+      <mat-radio-group [(ngModel)]="managerSelected">
+        <mat-radio-button (change)="onManagerSelection()" [value]="true">{{ '#LDS#Assign to me' | translate }}</mat-radio-button>
+      </mat-radio-group>
+    } @else {
+      <mat-checkbox (change)="onManagerSelection()" [(ngModel)]="managerSelected">{{ '#LDS#Assign to me' | translate }}</mat-checkbox>
+    }
+  </mat-card>
+</div>
+<div eui-sidesheet-actions>
+  <button mat-stroked-button (click)="closeSidesheet()">
+    {{ '#LDS#Cancel' | translate }}
+  </button>
+  <button mat-flat-button color="primary" (click)="assignMore()" [disabled]="!assignButtonEnabled" *ngIf="!!data.reassign">
+    <eui-icon icon="forward"></eui-icon>
+    {{ '#LDS#Reassign' | translate }}
+  </button>
+  <button mat-flat-button color="primary" (click)="assignMore()" [disabled]="!assignButtonEnabled" *ngIf="!data.reassign">
+    <eui-icon icon="useradd"></eui-icon>
+    {{ '#LDS#Assign' | translate }}
+  </button>
+</div>

@@ -1,0 +1,102 @@
+<mat-card class="imx-data-tree-container">
+  <div class="imx-card-data-explorer-header">
+    <div class="imx-card-data-explorer-header-bg">
+      <h3>{{ ownershipInfo?.TableNameDisplay }}</h3>
+      <ng-container *ngIf="contextId">
+        <imx-help-contextual [contextId]="contextId"></imx-help-contextual>
+      </ng-container>
+    </div>
+  </div>
+  <div class="imx-card-content" *ngIf="isAdmin; else pageView">
+    <imx-data-tree-wrapper
+      *ngIf="useTree; else tableView"
+      data-imx-identifier="roles-overview-data-tree"
+      [database]="treeDatabase"
+      [entitySchema]="entitySchema"
+      (nodeSelected)="onNodeSelected($event)"
+      [withSelectedNodeHighlight]="false"
+      [filters]="filterOptions"
+      [isNodeSelectable]="true"
+    >
+    </imx-data-tree-wrapper>
+  </div>
+</mat-card>
+
+<div class="imx-button-bar-transparent">
+  <button
+    mat-stroked-button
+    data-imx-identifier="roles-overview-button-restore"
+    (click)="restoreDeletedRole()"
+    *ngIf="restoreHandler"
+    class="imx-right-button"
+  >
+    <span translate>#LDS#Restore deleted object</span>
+  </button>
+  <button
+    mat-flat-button
+    data-imx-identifier="roles-overview-button-create-new"
+    color="primary"
+    (click)="createNew($event)"
+    *ngIf="canCreate"
+  >
+    <eui-icon icon="add"></eui-icon>
+    <span translate>{{ getCreationText() }}</span>
+  </button>
+</div>
+
+<ng-template #pageView>
+  <div class="imx-page-card">
+    <imx-data-tree-wrapper
+      *ngIf="useTree; else tableView"
+      data-imx-identifier="roles-overview-data-tree"
+      [database]="treeDatabase"
+      [entitySchema]="entitySchema"
+      (nodeSelected)="onNodeSelected($event)"
+      [withSelectedNodeHighlight]="false"
+      [filters]="filterOptions"
+      [isNodeSelectable]="true"
+    >
+    </imx-data-tree-wrapper>
+  </div>
+</ng-template>
+
+<ng-template #tableView>
+  <imx-data-view-toolbar
+    [dataSource]="dataSource"
+    (updateConfig)="updateConfig($event)"
+    (deleteConfigById)="deleteConfigById($event)"
+  ></imx-data-view-toolbar>
+  <imx-data-view-auto-table [dataSource]="dataSource" mode="manual">
+    <ng-container [matColumnDef]="DisplayColumns.DISPLAY_PROPERTYNAME" *ngIf="entitySchema">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]?.Display }}
+      </th>
+      <td mat-cell *matCellDef="let item" role="gridcell" class="imx-table-cell">
+        <div>
+          {{ item?.GetEntity()?.GetDisplay() }}
+        </div>
+        <div *ngIf="item.GetEntity().GetDisplay() != item.GetEntity().GetDisplayLong()" class="imx-subtext">
+          {{ item.GetEntity().GetDisplayLong() }}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container *ngIf="hasHierarchy && canCreate" [matColumnDef]="'actions'">
+      <ng-container>
+        <th mat-header-cell *matHeaderCellDef></th>
+      </ng-container>
+      <td mat-cell *matCellDef="let item" role="gridcell">
+        <div class="imx-button-column">
+          <button
+            mat-stroked-button
+            (click)="createNew($event, item.GetEntity())"
+            [attr.data-imx-identifier]="'roles-overview-edit-element-button-' + item.GetEntity().GetKeys().join('-')"
+          >
+            <eui-icon icon="add"></eui-icon>
+            <span translate>{{ getChildCreationText() }}</span>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+  </imx-data-view-auto-table>
+  <imx-data-view-paginator [dataSource]="dataSource"></imx-data-view-paginator>
+</ng-template>

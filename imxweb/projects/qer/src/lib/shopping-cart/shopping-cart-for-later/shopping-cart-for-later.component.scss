@@ -1,0 +1,24 @@
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($overflow: hidden, $height: 100%);
+}
+
+.imx-itshop-content{
+  @include flex-column-container-fill();
+  margin-top: 16px;
+}
+
+.imx-toolbar-info {
+  margin-right: 10px;
+}
+
+.imx-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+
+  button {
+    margin-left: 10px;
+  }
+}

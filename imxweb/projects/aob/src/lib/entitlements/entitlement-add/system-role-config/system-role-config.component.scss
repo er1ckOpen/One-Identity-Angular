@@ -1,0 +1,31 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+.imx-viewport {
+  height: 300px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.mat-mdc-radio-button {
+  margin-right: 20px;
+}
+
+.eui-sidesheet-content {
+  @include flex-column-container($overflow: hidden, $height: inherit);
+
+  .imx-content-card {
+    flex: 1 1 auto;
+  }
+}
+
+.imx-no-results {
+  text-align: center;
+  margin: 20px 0;
+
+  p {
+    margin: 0;
+    font-size: 18px;
+    color: $color-gray-40;
+  }
+}

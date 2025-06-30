@@ -1,0 +1,61 @@
+/* You can add styles to this file, and also import other style files */
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  overflow-y: auto;
+  flex-grow: 1;
+  height: 100%;
+  background-color: $color-gray-0;
+  display: flex;
+  flex-direction: column;
+
+  .imx-data-table__hidden {
+    display: none;
+  }
+
+  
+
+  .imx-no-results {
+    text-align: center;
+    margin: 20px 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+      margin: 0;
+      font-size: 18px;
+      color: $color-gray-80;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    background-color: $color-gray-70;
+
+
+    .imx-no-results {
+      p {
+        color: $color-gray-10;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-90;
+
+    .imx-no-results {
+      p {
+        color: $color-gray-0;
+      }
+    }
+  }
+}

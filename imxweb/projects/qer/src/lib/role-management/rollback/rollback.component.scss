@@ -1,0 +1,33 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+.item {
+  flex-grow: 1;
+  padding-top: 1em;
+}
+
+.subtext {
+  font-size: small;
+  font-style: italic;
+  color: $black_9;
+  margin-bottom: 10px;
+}
+
+.imx-step-data-table {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  margin-bottom: 45px;
+}
+
+.imx-stepper-card {
+  height: 100%;
+}
+
+.eui-dark-theme {
+  background-color: $color-gray-70;
+}
+
+.eui-contrast-theme {
+  background-color: $color-gray-90;
+}

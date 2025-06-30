@@ -1,0 +1,7 @@
+// Create a config with the default typography levels.
+@use '@angular/material' as mat;
+// see: https://material.angular.io/guide/typography
+
+mat-card-content {
+  overflow: hidden;
+}

@@ -1,0 +1,23 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+
+:host {
+  .no-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+  }
+
+  .mat-accordion > :not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  mat-panel-title {
+    font-weight: bold;
+  }
+  .eui-sidesheet-content {
+    display: flex;
+    flex-direction: column;
+  }
+}

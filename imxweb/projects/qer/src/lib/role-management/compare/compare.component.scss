@@ -1,0 +1,37 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+.subtext {
+  font-size: small;
+  font-style: italic;
+  color: $black_9;
+  margin-bottom: 10px;
+}
+
+.compare-item {
+  > *:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.imx-step-data-table {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+}
+
+.imx-stepper-card {
+  height: 100%;
+}
+
+.eui-dark-theme {
+  :host {
+    background-color: $color-gray-70;
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-70;
+  }
+}

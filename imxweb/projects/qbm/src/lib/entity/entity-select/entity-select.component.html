@@ -1,0 +1,9 @@
+<span class="imx-entity-select-title">{{ title | translate }}</span>
+<eui-select
+  (selectionChange)="selectionUpdated($event)"
+  placeholder="{{ placeholder | translate }}"
+  [filterFunction]="filter"
+  [options]="options"
+  [formControl]="control"
+>
+</eui-select>

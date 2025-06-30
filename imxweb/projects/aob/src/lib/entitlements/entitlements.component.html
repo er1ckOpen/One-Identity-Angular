@@ -1,0 +1,147 @@
+<div class="imx-entitlements-site" [ngClass]="{ 'imx-hidden': hideTable }">
+  <div class="imx-table-action-row">
+    <div *ngIf="!isLoading" class="imx-entitlements-row-actions">
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="publishDisabled"
+        (click)="publish()"
+        data-imx-identifier="imx-entitlements-publish"
+      >
+        {{ '#LDS#Publish' | translate }}
+      </button>
+      <button mat-stroked-button [disabled]="unpublishDisabled" (click)="unpublish()" data-imx-identifier="imx-entitlements-unpublish">
+        {{ '#LDS#Unpublish' | translate }}
+      </button>
+      <button mat-stroked-button data-imx-identifier="imx-entitlements-assign-mode-button" [matMenuTriggerFor]="actionsMenu">
+        <span>{{ '#LDS#Assign more' | translate }}</span>
+        <eui-icon icon="collapsedown"></eui-icon>
+      </button>
+      <mat-menu data-imx-identifier="entitlements-assign-more-actions-menu" #actionsMenu="matMenu">
+        <button mat-menu-item data-imx-identifier="imx-entitlements-assign-manually" (click)="addNewElement()">
+          {{ '#LDS#Assign manually' | translate }}
+        </button>
+        <mat-divider></mat-divider>
+        <button
+          mat-menu-item
+          data-imx-identifier="imx-entitlements-updateCondition"
+          [disabled]="!application.extendedDataRead"
+          (click)="editConditionForDynamicAssignments()"
+        >
+          {{ (hasConditionForDynamicAssignment ? '#LDS#Edit automatic assignment' : '#LDS#Assign automatically') | translate }}
+        </button>
+        <button
+          mat-menu-item
+          data-imx-identifier="imx-entitlements-apply-mapping"
+          [disabled]="!hasConditionForDynamicAssignment"
+          (click)="applyMappingForDynamicAssignments()"
+        >
+          {{ '#LDS#Check for new automatic assignments' | translate }}
+        </button>
+      </mat-menu>
+      <button mat-stroked-button [disabled]="unassignedDisabled" (click)="unassign()" data-imx-identifier="imx-entitlements-unassign">
+        {{ '#LDS#Unassign' | translate }}
+      </button>
+    </div>
+    <imx-data-view-toolbar [dataSource]="dataSource" [showSettings]="false" [showSearch]="false"></imx-data-view-toolbar>
+  </div>
+  <imx-data-view-auto-table [dataSource]="dataSource" mode="manual" [selectable]="true">
+    <ng-container [matColumnDef]="entitySchema.Columns.Ident_AOBEntitlement.ColumnName">
+      <th mat-header-cell *matHeaderCellDef>{{ entitySchema?.Columns?.Ident_AOBEntitlement?.Display }}</th>
+      <td mat-cell *matCellDef="let item" role="gridcell" class="imx-table-cell">
+        <div>{{ item.Ident_AOBEntitlement.Column.GetDisplayValue() }}</div>
+        <div subtitle>{{ item.Description.Column.GetDisplayValue() }}</div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="'type'">
+      <th mat-header-cell *matHeaderCellDef>{{ '#LDS#Type' | translate }}</th>
+      <td mat-cell *matCellDef="let item" role="gridcell">
+        <span>
+          {{ getType(item) }}
+        </span>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="'badges'">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let item" role="gridcell">
+        <div class="imx-badge-container">
+          <div color="primary" *ngIf="item.IsDynamic.value">
+            <eui-badge>{{ '#LDS#Automatic' | translate }}</eui-badge>
+          </div>
+          <div *ngIf="item.IsOutlierAssignment.value">
+            <imx-info-badge
+              color="warn"
+              [badgeText]="'#LDS#Wrong service category' | translate"
+              [templateRef]="infoContent"
+              [title]="'#LDS#Heading Wrong Service Category' | translate"
+            ></imx-info-badge>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="entitySchema.Columns.UID_AERoleOwner.ColumnName">
+      <th mat-header-cell *matHeaderCellDef>{{ entitySchema?.Columns?.UID_AERoleOwner?.Display }}</th>
+      <td mat-cell *matCellDef="let item" role="gridcell">
+        <div>{{ item.UID_AERoleOwner.Column.GetDisplayValue() }}</div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="'assigned'">
+      <th mat-header-cell *matHeaderCellDef>{{ '#LDS#Assigned' | translate }}</th>
+      <td mat-cell *matCellDef="let item" role="gridcell">
+        <div>{{ item.XDateInserted.Column.GetDisplayValue() }}</div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="'status'">
+      <th mat-header-cell *matHeaderCellDef>{{ '#LDS#Status' | translate }}</th>
+      <td mat-cell *matCellDef="let item" role="gridcell" class="imx-table-cell">
+        <div *ngIf="filter.notPublished(item)">{{ '#LDS#Not published' | translate }}</div>
+        <div *ngIf="filter.willPublish(item)">
+          <div>{{ '#LDS#Will be published' | translate }}</div>
+          <div>{{ item.ActivationDate.Column.GetDisplayValue() }}</div>
+        </div>
+        <div *ngIf="filter.published(item)">
+          <div>{{ '#LDS#Published' | translate }}</div>
+          <div subtitle *ngIf="application.IsInActive.value">{{ '#LDS#(not yet requestable)' | translate }}</div>
+        </div>
+      </td>
+    </ng-container>
+  </imx-data-view-auto-table>
+  <div class="imx-table-action-row imx-margin-top-16">
+    <imx-data-view-selection [dataSource]="dataSource"></imx-data-view-selection>
+    <imx-data-view-paginator [dataSource]="dataSource"></imx-data-view-paginator>
+  </div>
+</div>
+<div class="imx-entitlements-site" *ngIf="hideTable">
+  <div class="imx-aob-entitlements-empty imx-no-results">
+    <eui-icon icon="key"></eui-icon>
+    <div class="imx-aob-entitlements-empty-description">
+      <h2>
+        {{ '#LDS#No application entitlements assigned' | translate }}
+      </h2>
+      <span>
+        {{ '#LDS#Assign application entitlements to this application.' | translate }}
+      </span>
+    </div>
+    <div class="imx-aob-entitlements-empty-actions">
+      <button mat-flat-button color="primary" (click)="addNewElement()" data-imx-identifier="entitlements-add-unsGroup">
+        {{ '#LDS#Assign application entitlements' | translate }}
+      </button>
+      <button
+        mat-stroked-button
+        data-imx-identifier="imx-entitlements-assign"
+        [disabled]="!application.extendedDataRead"
+        (click)="editConditionForDynamicAssignments()"
+      >
+        {{ '#LDS#Create automatic assignment' | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #infoContent>
+  <p
+    [translate]="
+      '#LDS#This application entitlement is not assigned to the root service category of this application nor to any of its child service categories.'
+    "
+  ></p>
+</ng-template>

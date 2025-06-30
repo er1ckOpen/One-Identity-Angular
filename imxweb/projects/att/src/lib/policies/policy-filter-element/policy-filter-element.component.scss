@@ -1,0 +1,13 @@
+.imx-panel-title-with-number{
+  max-width: calc(100% - 52px);
+  &> :first-child {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  }
+
+.imx-small-error {
+  font-size: small;
+}

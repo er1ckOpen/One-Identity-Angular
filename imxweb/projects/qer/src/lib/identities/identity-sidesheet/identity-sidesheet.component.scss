@@ -1,0 +1,31 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+.imx-security-badge {
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.imx-tab-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.imx-account-ext {
+  padding: 30px 30px 0px 30px;
+}
+
+.governance-sidesheet__tab-content {
+  imx-hyperview {
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .marked-for-delete {
+    margin: 10px 0 5px;
+    display: block;
+    width: 100%;
+  }
+}

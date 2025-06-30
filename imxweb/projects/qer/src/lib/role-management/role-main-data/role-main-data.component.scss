@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+form {
+  overflow: auto;
+}
+
+.imx-tab-content-body {
+  display: flex;
+}
+
+.imx-cdr-group {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding-right: 10px;
+}

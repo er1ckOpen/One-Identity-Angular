@@ -1,0 +1,14 @@
+@import 'base/mixins';
+:host {
+  @include flex-column-container($height: 100%, $overflow: hidden);
+
+  .imx-cdr-group {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding-right: 10px;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

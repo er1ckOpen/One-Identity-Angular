@@ -1,0 +1,36 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  display: flex;
+  margin: 0;
+  flex: 1 1 auto;
+  height: calc(100% - 120px);
+}
+
+.imx-application-navigation {
+  display: flex;
+  margin-right: 30px;
+}
+
+.imx-application-content {
+  flex: 1 1 auto;
+  background-color: $white;
+  overflow: hidden;
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-application-content {
+      background-color: $color-gray-80;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-application-content {
+      background-color: $color-gray-90;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/variables';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container-fill();
+}
+.imx-flex{
+  .mat-headline-5{
+    margin: 0;
+  }
+}
+
+.sub-headline {
+  font-style: italic;
+  font-weight: lighter;
+  margin-bottom: 0.5em;
+
+  @media #{$IMX_Mediaquery_Smartphone} {
+    margin-top: -0.5em;
+  }
+  @media #{$IMX_Mediaquery_SmallDesktops} {
+    margin-top: -0.5em;
+  }
+}
+
+.imx-job-queue-div {
+  border-bottom: 1px solid $black-3;
+}
+
+.imx-object-overview-tab-text {
+  font-size: medium;
+}
+
+.imx-ops-ElementStyle {
+  margin: 10px 0;
+  font-size: medium;
+}
+
+.imx-object-overview-tab-text {
+  font-size: medium;
+}
+.imx-content-header, eui-alert{
+  margin-top: 24px;
+}

@@ -1,0 +1,18 @@
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.mat-mdc-dialog-content {
+  @include flex-column-container($overflow: hidden, $height: 100%);
+}
+
+.mat-mdc-dialog-actions {
+  > .mat-mdc-unelevated-button {
+    margin-bottom: 20px;
+  }
+}

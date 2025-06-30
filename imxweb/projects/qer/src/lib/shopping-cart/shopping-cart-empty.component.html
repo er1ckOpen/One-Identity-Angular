@@ -1,0 +1,28 @@
+<h2 class="mat-headline-5">
+  <span>{{ '#LDS#Heading Shopping Cart' | translate }}</span>
+  <imx-help-contextual></imx-help-contextual>
+</h2>
+
+<div mat-card-avatar>
+  <mat-icon class="imx-icon-size-48">shopping_cart</mat-icon>
+</div>
+<h2>{{ '#LDS#Your shopping cart is currently empty.' | translate }}</h2>
+
+<mat-card class="mat-elevation-z0">
+  <button
+    mat-flat-button
+    color="primary"
+    type="button"
+    [routerLink]="['/newrequest/allProducts']"
+    data-imx-identifier="emptycart-link-newproducts"
+  >
+    {{ '#LDS#Start new request' | translate }}
+  </button>
+  <mat-divider class="imx-divider-dashed"></mat-divider>
+  <button mat-stroked-button type="button" [routerLink]="['/requesthistory']" data-imx-identifier="emptycart-link-requesthistory">
+    {{ '#LDS#View request history' | translate }}
+  </button>
+  <button mat-stroked-button type="button" [routerLink]="['/shoppingcart/later']" data-imx-identifier="emptycart-link-saveforlater">
+    {{ '#LDS#View saved for later list' | translate }}
+  </button>
+</mat-card>

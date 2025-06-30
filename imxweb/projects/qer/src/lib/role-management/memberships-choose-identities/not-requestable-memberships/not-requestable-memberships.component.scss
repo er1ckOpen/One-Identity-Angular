@@ -1,0 +1,11 @@
+@import 'base/mixins';
+@import 'base/mixins';
+// add styles if necessary
+
+.imx-card-fill {
+  margin: 10px;
+}
+
+.mat-mdc-dialog-content {
+  @include flex-column-container($overflow: hidden);
+}

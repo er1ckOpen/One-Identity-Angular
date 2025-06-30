@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.appCards {
+  padding: 16px;
+  mat-card {
+    width: 350px;
+    min-height: 270px;
+    float: left;
+    margin: 10px;
+    padding:16px;
+    mat-card-content {
+      padding: 0px 10px 10px 10px !important;
+
+      > p {
+        text-align: justify;
+        font-size:14px;
+      }
+    }
+    .mat-mdc-card-title{
+      font-size: 24px;
+    }
+  }
+}

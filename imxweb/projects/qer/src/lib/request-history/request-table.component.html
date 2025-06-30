@@ -1,0 +1,212 @@
+<mat-card class="imx-request-table-card">
+  <imx-data-view-auto-table
+    [dataSource]="dataSource"
+    mode="manual"
+    [selectable]="!isReadOnly && !isArchivedRequests"
+    matSort
+    (matSortChange)="dataSource?.sortChange($event)"
+    [matSortActive]="dataSource.sortId()"
+    [matSortDirection]="dataSource.sortDirection()"
+  >
+    <ng-container [matColumnDef]="entitySchema.Columns.DisplayOrg.ColumnName">
+      <ng-container *ngIf="isArchivedRequests">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ '#LDS#Product' | translate }}
+        </th>
+      </ng-container>
+      <ng-container *ngIf="!isArchivedRequests">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ '#LDS#Product' | translate }}
+        </th>
+      </ng-container>
+      <td mat-cell *matCellDef="let pwo" role="gridcell" class="imx-table-cell">
+        <div class="imx-display-column">
+          <div class="imx-placeholder" *ngIf="pwo.UID_PersonWantsOrgParent.value"></div>
+          <div>
+            <div *ngIf="pwo.UID_AccProduct.value">
+              <imx-request-display
+                [additionalText]="getAdditionalText(pwo)"
+                [personWantsOrg]="pwo"
+                [isReadOnly]="isReadOnly"
+                data-imx-identifier="imx-request-display"
+              >
+              </imx-request-display>
+            </div>
+            <div *ngIf="!pwo.UID_AccProduct.value">
+              {{ pwo.DisplayOrg.Column.GetDisplayValue() }}
+            </div>
+            <div class="imx-subtext" *ngIf="pwo.UID_PersonWantsOrgParent.value">
+              {{ (pwo.IsOptionalChild.value ? '#LDS#Optional product' : '#LDS#Mandatory product') | translate }}
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="'badges'">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let pwo" role="gridcell">
+        <div *ngIf="pwo.ValidUntil.value" class="imx-badge-container">
+          <eui-badge>
+            {{ translateProvider.GetColumnDisplay('ValidUntil', entitySchema) + ': ' + (pwo.ValidUntil.value | shortDate) }}
+          </eui-badge>
+        </div>
+        <div *ngIf="pwo.complianceRuleViolation" class="imx-badge-container">
+          <eui-badge>
+            {{ '#LDS#Rule violation' | translate }}
+          </eui-badge>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="entitySchema.Columns.UiOrderState.ColumnName">
+      <ng-container *ngIf="isArchivedRequests">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ entitySchema?.Columns?.UiOrderState?.Display }}
+        </th>
+      </ng-container>
+      <ng-container *ngIf="!isArchivedRequests">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ entitySchema?.Columns?.UiOrderState?.Display }}
+        </th>
+      </ng-container>
+      <td mat-cell *matCellDef="let pwo" role="gridcell">
+        <ng-container *ngIf="['OrderProduct', 'OrderProlongate'].includes(pwo.UiOrderState.value); else defaultDisplay">
+          {{
+            pwo.UiOrderState.value === 'OrderProlongate'
+              ? ('#LDS#Renewed' | translate) +
+                ' ' +
+                (pwo.ValidUntilProlongation.value
+                  ? ('#LDS#Until' | translate) + ' ' + (pwo.ValidUntilProlongation.value | shortDate)
+                  : ('#LDS#unlimited' | translate))
+              : ('#LDS#Requested' | translate)
+          }}
+        </ng-container>
+        <ng-template #defaultDisplay>
+          <span>{{ pwo.UiOrderState.Column.GetDisplayValue() }}</span>
+        </ng-template>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="entitySchema.Columns.OrderDate.ColumnName">
+      <ng-container>
+        <ng-container *ngIf="isArchivedRequests">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ entitySchema?.Columns?.OrderDate?.Display }}
+          </th>
+        </ng-container>
+        <ng-container *ngIf="!isArchivedRequests">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ entitySchema?.Columns?.OrderDate?.Display }}
+          </th>
+        </ng-container>
+      </ng-container>
+      <td mat-cell *matCellDef="let pwo" role="gridcell">
+        <span>
+          {{ pwo.OrderDate.Column.GetValue() | shortDate }}
+        </span>
+      </td>
+    </ng-container>
+  </imx-data-view-auto-table>
+  <imx-data-view-paginator [dataSource]="dataSource" *ngIf="!isArchivedRequests"></imx-data-view-paginator>
+</mat-card>
+<div class="imx-button-bar-transparent" *ngIf="!isReadOnly && !isArchivedRequests">
+  <imx-data-view-selection [dataSource]="dataSource" class="justify-start"></imx-data-view-selection>
+  <button
+    mat-stroked-button
+    data-imx-identifier="requests-history-button-actions"
+    title="{{ '#LDS#Actions' | translate }}"
+    [matMenuTriggerFor]="actionsMenu"
+    [disabled]="!canPerformActions"
+  >
+    <eui-icon icon="ellipsisvertical"></eui-icon>
+    {{ '#LDS#Actions' | translate }}
+  </button>
+  <mat-menu yPosition="above" xPosition="before" data-imx-identifier="requests-history-actions-menu" #actionsMenu="matMenu">
+    <button
+      mat-menu-item
+      *ngIf="canProlongateRequest"
+      data-imx-identifier="request-menu-renew-request"
+      (click)="actionService.prolongate(selectedItems)"
+    >
+      {{ '#LDS#Renew product' | translate }}
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="canUnsubscribeRequest"
+      data-imx-identifier="request-menu-unsubscribe-request"
+      (click)="actionService.unsubscribe(selectedItems)"
+    >
+      {{ '#LDS#Unsubscribe product' | translate }}
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="canWithdrawRequest"
+      data-imx-identifier="request-detail-Withdraw-request"
+      (click)="actionService.withdrawRequest(selectedItems)"
+    >
+      {{ '#LDS#Cancel request' | translate }}
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="canWithdrawDelegation"
+      data-imx-identifier="request-detail-withdraw-delegation"
+      (click)="
+        actionService.revokeDelegation(
+          selectedItems,
+          '#LDS#Heading Withdraw Delegation',
+          '#LDS#The delegations of approval for {0} requests have been successfully withdrawn.',
+          '#LDS#Withdraw delegations of approval for the following requests.'
+        )
+      "
+    >
+      {{ '#LDS#Withdraw delegation' | translate }}
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="canWithdrawAdditionalApprover"
+      data-imx-identifier="request-detail-withdraw-additional-approver"
+      (click)="
+        actionService.revokeAdditionalApprover(
+          selectedItems,
+          '#LDS#Heading Withdraw Additional Approver',
+          '#LDS#The additional approvers for {0} requests have been successfully withdrawn.',
+          '#LDS#Withdraw additional approvers for the following requests.'
+        )
+      "
+    >
+      {{ '#LDS#Withdraw additional approver' | translate }}
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="canRecallLastQuestion"
+      data-imx-identifier="request-detail-recall-last-question"
+      (click)="actionService.recallLastQuestion(selectedItems)"
+    >
+      {{ '#LDS#Withdraw question' | translate }}
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="canRevokeHoldStatus"
+      data-imx-identifier="request-detail-revoke-hold-status"
+      (click)="actionService.revokeHoldStatus(selectedItems)"
+    >
+      {{ '#LDS#Revoke hold status' | translate }}
+    </button>
+
+    <button
+      mat-menu-item
+      *ngIf="canEscalateDecision"
+      data-imx-identifier="request-detail-escalate-approval"
+      (click)="actionService.escalateDecisions(selectedItems)"
+    >
+      {{ '#LDS#Escalate approval' | translate }}
+    </button>
+
+    <button
+      mat-menu-item
+      *ngIf="canCopyItems"
+      data-imx-identifier="request-detail-copy-items"
+      (click)="actionService.copyItems(selectedItems)"
+    >
+      {{ '#LDS#Request product again' | translate }}
+    </button>
+  </mat-menu>
+</div>

@@ -1,0 +1,17 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 1;
+
+  .imx-icon-container {
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    .imx-bug-icon {
+      margin-right: 10px;
+    }
+  }
+}

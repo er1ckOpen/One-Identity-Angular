@@ -1,0 +1,107 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container($height: 100%);
+  overflow-y: auto;
+  background-color: $color-gray-2;
+
+  imx-data-table {
+    flex-grow: 2;
+  }
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.imx-cases-card {
+  @include flex-column-container();
+  margin: 0px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.eui-sidesheet-actions {
+  padding: 16px;
+}
+
+imx-data-table {
+  flex-grow: 2;
+}
+
+.eui-sidesheet-actions {
+  .mat-mdc-outlined-button {
+    align-self: flex-start;
+  }
+}
+
+.imx-mat-card-header-line {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 30px 30px 0 30px;
+}
+
+.imx-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.heading-wrapper {
+  @include flex-column-container();
+
+  .imx-helper-title {
+    font-size: larger;
+    font-weight: 600;
+  }
+}
+
+.imx-sample-data-info {
+  @include flex-column-container();
+  text-align: center;
+  margin: 20px 0;
+  flex: 1 1 auto;
+  justify-content: center;
+
+  p {
+    margin: 0;
+    font-size: 18px;
+    color: $color-gray-80;
+  }
+
+  button {
+    align-self: center;
+    margin-top: 16px;
+  }
+
+  .imx-larger-text {
+    font-size: 26px;
+  }
+}
+
+.hidden {
+  display: none !important;
+  height: 0px;
+}
+
+.imx-attestation-tree-container {
+  @include flex-column-container();
+  flex: 1 1 auto;
+}
+
+.eui-dark-theme {
+  :host {
+    background-color: $color-gray-80;
+
+    .imx-sample-data-info {
+      p {
+        color: $color-gray-10;
+      }
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    background-color: $color-gray-100;
+  }
+}

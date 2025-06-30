@@ -1,0 +1,13 @@
+<h2 class="mat-headline">
+  {{ '#LDS#Heading Job Server Overview' | translate }}
+</h2>
+<mat-card class="imx-margin-top-10">
+  <mat-card-content>
+    <button mat-flat-button color="primary" (click)="Update()">{{ '#LDS#Check all job servers' | translate }}</button>
+    <div *ngIf="lastUpdate">
+      <span>{{ '#LDS#Last check' | translate }}</span>
+      <span>{{ lastUpdate }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>
+<imx-job-servers-gridview class="imx-job-grid" (jobServersChecked)="jobServersChecked($event)"></imx-job-servers-gridview>

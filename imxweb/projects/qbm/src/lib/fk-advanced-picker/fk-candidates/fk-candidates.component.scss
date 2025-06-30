@@ -1,0 +1,35 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  .imx-subtext {
+    font-size: smaller;
+  }
+}
+
+// Theming section
+:host {
+  .imx-subtext {
+    color: $color-gray-60;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-subtext {
+      color: $color-gray-20;
+    }
+  }
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-subtext {
+      color: $color-gray-40;
+    }
+  }
+}

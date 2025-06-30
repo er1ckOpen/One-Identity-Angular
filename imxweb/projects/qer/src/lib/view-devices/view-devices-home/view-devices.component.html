@@ -1,0 +1,68 @@
+<mat-card class="imx-card-fill">
+  <div class="imx-card-data-explorer-header">
+    <div class="imx-card-data-explorer-header-bg">
+      <h3 translate>#LDS#Heading Devices</h3>
+      <imx-help-contextual [contextId]="contextId"></imx-help-contextual>
+    </div>
+  </div>
+  <imx-data-view-toolbar [dataSource]="dataSource" [showSettings]="false"></imx-data-view-toolbar>
+  <imx-data-view-auto-table [dataSource]="dataSource" mode="manual">
+    <ng-container [matColumnDef]="DisplayColumns.DISPLAY_PROPERTYNAME" *ngIf="entitySchema">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ entitySchema?.Columns?.[DisplayColumns.DISPLAY_PROPERTYNAME]?.Display }}
+      </th>
+      <td mat-cell *matCellDef="let item" role="gridcell" class="imx-table-cell">
+        <div>
+          {{ item?.GetEntity()?.GetDisplay() }}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="entitySchema?.Columns?.UID_HardwareType?.ColumnName">
+      <ng-container>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ entitySchema?.Columns?.UID_HardwareType?.Display }}
+        </th>
+      </ng-container>
+      <td mat-cell *matCellDef="let item" role="gridcell">
+        <span>
+          {{ item.UID_HardwareType.Column.GetDisplayValue() }}
+        </span>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="entitySchema?.Columns?.UID_PersonOwner?.ColumnName">
+      <ng-container>
+        <th mat-header-cell *matHeaderCellDef>
+          {{ entitySchema?.Columns?.UID_PersonOwner?.Display }}
+        </th>
+      </ng-container>
+      <td mat-cell *matCellDef="let item" role="gridcell">
+        <span>
+          {{ item.UID_PersonOwner?.Column.GetDisplayValue() }}
+        </span>
+      </td>
+    </ng-container>
+  </imx-data-view-auto-table>
+  <imx-data-view-paginator [dataSource]="dataSource"></imx-data-view-paginator>
+</mat-card>
+<div class="imx-button-bar-transparent">
+  <button
+    mat-flat-button
+    class="imx-button-icon-14"
+    color="primary"
+    [matMenuTriggerFor]="menu"
+    class="imx-create-device-button"
+    data-imx-identifier="button-create-device"
+  >
+    <eui-icon icon="add"></eui-icon>
+    {{ '#LDS#Create device' | translate }}
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      *ngFor="let hardwareType of deviceModelValueStruct; let i = index"
+      (click)="createNewDevice(hardwareType.DataValue, i)"
+    >
+      {{ hardwareType.DisplayValue }}
+    </button>
+  </mat-menu>
+</div>

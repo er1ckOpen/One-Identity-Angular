@@ -1,0 +1,16 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+.imx-sidesheet-content__overflow {
+  flex: 1;
+}
+
+.eui-sidesheet-actions {
+  @include eui-sidesheet-actions__mixin_01($align-items: center, $flex-wrap: wrap);
+}
+
+.imx-selected-items {
+  justify-self: flex-start;
+  margin: 0;
+  line-height: 36px;
+}

@@ -1,0 +1,65 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/variables';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container-fill();
+}
+.imx-searchbar-card {
+  max-width: $IMX_SearchBar_Width;
+  width: $IMX_SearchBar_Width;
+  padding: 0px 10px;
+  display: inline-block;
+}
+
+.imx-procces-action{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mat-mdc-radio-button {
+  margin-left: 15px;
+}
+
+.flex-property {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.imx_MatTableRow {
+  cursor: pointer;
+}
+.imx_MatTableHeaderRow {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.imx-no-results {
+  text-align: center;
+  margin: 20px 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $color-gray-0;
+
+  p {
+    margin: 0;
+    font-size: 18px;
+    color: $color-gray-80;
+  }
+}
+
+.eui-dark-theme {
+  :host {
+    .imx-no-results {
+      background-color: $color-gray-70;
+
+      p {
+        color: $color-gray-10;
+      }
+    }
+  }
+}

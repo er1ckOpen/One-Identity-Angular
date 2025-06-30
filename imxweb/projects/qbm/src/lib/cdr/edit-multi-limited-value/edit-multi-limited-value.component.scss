@@ -1,0 +1,25 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+:host {
+  flex-grow: 1;
+}
+
+.imx-error-margin {
+  margin-top: -15px;
+  margin-left: 10px;
+}
+
+.imx-multi-value-container {
+  display: flex;
+  flex-flow: column;
+}
+
+.imx-suffix-container {
+  display: flex;
+  margin-bottom: 5px;
+
+  > *:not(:last-child) {
+    margin-right: 5px;
+    margin-top: 0;
+  }
+}

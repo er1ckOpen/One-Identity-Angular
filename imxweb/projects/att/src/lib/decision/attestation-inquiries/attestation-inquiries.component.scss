@@ -1,0 +1,9 @@
+@import 'base/mixins';
+:host {
+  @include flex-column-container($overflow: hidden);
+  flex-grow: 1;
+}
+
+.mat-mdc-card.imx-card-fill{
+  margin: 0 0 3px 0;
+}

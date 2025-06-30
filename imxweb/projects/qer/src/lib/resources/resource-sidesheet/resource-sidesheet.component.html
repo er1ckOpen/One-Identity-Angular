@@ -1,0 +1,39 @@
+<mat-tab-group mat-stretch-tabs="false" #tabs>
+  <mat-tab [label]="'#LDS#Heading Main Data' | translate">
+    <div eui-sidesheet-content>
+      <mat-card>
+        <form [formGroup]="formGroup">
+          <imx-cdr-editor
+            *ngFor="let cdr of cdrList"
+            [cdr]="cdr"
+            (controlCreated)="resourceFormGroup.addControl(cdr?.column?.ColumnName ?? '', $event)"
+          ></imx-cdr-editor>
+          <imx-cdr-editor
+            *ngIf="ownerCdr"
+            [cdr]="ownerCdr"
+            (controlCreated)="resourceFormGroup.addControl(ownerCdr.column.ColumnName, $event)"
+          ></imx-cdr-editor>
+        </form>
+      </mat-card>
+    </div>
+    <div eui-sidesheet-actions>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!formGroup.dirty || formGroup.invalid"
+        data-imx-identifier="resource-sidesheet-save-button"
+        (click)="submit()"
+      >
+        {{ '#LDS#Save' | translate }}
+      </button>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ '#LDS#Heading Hyperview' | translate }}">
+    <ng-template matTabContent>
+      <div eui-sidesheet-content>
+        <imx-object-hyperview [objectType]="data?.entity?.TypeName" [objectUid]="data?.entity?.GetKeys()?.[0] || ''">
+        </imx-object-hyperview>
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

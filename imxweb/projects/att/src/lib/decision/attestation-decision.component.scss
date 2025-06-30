@@ -1,0 +1,59 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  .imx-cases-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .mat-mdc-outlined-button,
+  .mat-mdc-unelevated-button {
+    @include image-button-icon();
+  }
+
+  > * {
+    margin-right: 16px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.imx-attestationcase-table {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.imx-decision {
+  @include button-column-right();
+  > button:not(:last-of-type) {
+    margin-right: 5px;
+  }
+}
+
+.recommendation-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.toggle-wrapper {
+  margin-bottom: 1em;
+}
+
+@media only screen and (max-width: 1024px) {
+  ::ng-deep .mat-column-decision {
+    display: none;
+  }
+}

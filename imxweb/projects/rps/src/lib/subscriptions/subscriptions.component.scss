@@ -1,0 +1,31 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import 'base/mixins';
+
+:host {
+  @include flex-column-container-fill();
+}
+
+imx-data-table {
+  flex: 1 1 auto;
+}
+
+.imx-right-button {
+  float: right;
+  margin-right: 10px;
+}
+
+.imx-separate-menu-item {
+  border-top: 1px solid $black-c;
+}
+
+.mat-mdc-card {
+  .mat-mdc-card-content {
+    @include flex-column-container-fill();
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.mat-mdc-outlined-button {
+  @include image-button-icon();
+}

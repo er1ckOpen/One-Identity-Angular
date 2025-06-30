@@ -1,0 +1,16 @@
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: inherit;
+}
+
+imx-attestation-history {
+  height: 100%;
+}
+
+.mat-mdc-outlined-button {
+  @include image-button-icon();
+}

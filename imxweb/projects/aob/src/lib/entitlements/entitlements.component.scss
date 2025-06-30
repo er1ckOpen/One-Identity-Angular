@@ -1,0 +1,80 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+@import 'base/mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  flex: 1 1 auto;
+}
+
+.imx-entitlements-site {
+  &.imx-hidden{
+    display:none;
+  }
+  padding: 16px 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  .imx-entitlements-row-actions{
+    display: flex;
+    gap: 8px;
+  }
+}
+
+imx-data-source-toolbar-custom button {
+  margin-right: 5px;
+}
+
+.imx-aob-entitlements-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  flex: 1 1 auto;
+  justify-content: center;
+
+  h2 {
+    font-weight: 600;
+  }
+
+  > div {
+    margin-top: 30px;
+  }
+
+  .imx-aob-entitlements-empty-description {
+    margin-bottom: 10px;
+  }
+
+  .imx-aob-entitlements-empty-actions {
+    display: flex;
+    flex-direction: column;
+
+    > .mat-mdc-unelevated-button {
+      margin-bottom: 15px;
+    }
+    > :last-child {
+      justify-self: center;
+    }
+  }
+}
+
+.imx-aob-data-container {
+  flex-grow: 1;
+  align-content: flex-start;
+}
+
+div[subtitle] {
+  font-size: smaller;
+  color: $color-gray-40;
+}
+
+.eui-contrast-theme {
+  :host {
+    .imx-entitlements-site {
+      background-color: $color-gray-100;
+    }
+  }
+}

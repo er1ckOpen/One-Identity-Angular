@@ -1,0 +1,7 @@
+@import 'base/mixins';
+
+.heading-wrapper {
+  @include flex-row-container();
+  flex: 0 0 auto;
+  align-items: flex-start;
+}

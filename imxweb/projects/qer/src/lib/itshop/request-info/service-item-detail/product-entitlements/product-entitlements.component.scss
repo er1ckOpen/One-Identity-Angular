@@ -1,0 +1,6 @@
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}

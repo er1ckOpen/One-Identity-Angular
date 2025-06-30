@@ -1,0 +1,21 @@
+.eui-sidesheet-content{
+  display: flex;
+  flex-direction: column;
+  .mat-mdc-card{
+    overflow: hidden;
+  }
+  .imx-manager-selection{
+    overflow: visible;
+    padding-left: 40px;
+
+  }
+}
+:host{
+  ::ng-deep .imx-manager-selection{
+    .mat-mdc-radio-button{
+      .mdc-label{
+        margin-top: 0;
+      }
+    }
+  }
+}

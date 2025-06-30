@@ -1,0 +1,13 @@
+@import '@elemental-ui/core/src/styles/_palette.scss';
+@import '@elemental-ui/core/src/styles/_eui_palette.scss';
+
+.data-explorer {
+  ::ng-deep .imx-data-table-selection-info {
+    display: none;
+  }
+
+  imx-data-source-toolbar {
+    flex: 0 0 auto;
+  }
+
+}

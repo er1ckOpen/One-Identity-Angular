@@ -48,10 +48,10 @@ export class CreateUserComponent implements OnInit {
     else entity.GetColumn('EmployeeType').PutValue('Employee');
 
     await entity.Commit(false);
-    this.router.navigate(['/dashboard']); // redireciona após salvar
+    this.router.navigate(['/dashboard']);
   }
 
   cancel(): void {
-    this.router.navigate(['/dashboard']); // ou para onde preferir
+    this.router.navigate(['/dashboard']); 
   }
 }

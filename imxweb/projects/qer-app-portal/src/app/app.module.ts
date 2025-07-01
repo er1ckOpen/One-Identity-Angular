@@ -37,6 +37,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MenuItensModule } from '../../../custom-open-consult/src/lib/menu-itens/menu-itens.module'
 import { LockUnlockIdentitiesModule } from 'projects/custom-open-consult/src/lib/lock-unlock-identities/lock-unlock-identities.module';
 import { CreateUserModule } from 'projects/custom-open-consult/src/lib/create-user/create-user.module';
+import { MyDirectReportsModule } from 'projects/custom-open-consult/src/lib/my-direct-reports/my-direct-reports.module';
 
 import {
   AuthenticationModule,
@@ -162,6 +163,7 @@ export function getBaseHref(): string {
     MenuItensModule,
     LockUnlockIdentitiesModule,
     CreateUserModule,
+    MyDirectReportsModule,
   ],
   providers: [
     { provide: 'environment', useValue: environment },

@@ -29,6 +29,12 @@ export class AddMenuService {
             title: '#LDS#Criar usuarios'
           })
       }
+
+      menuObj.items?.push({
+        id: 'OPEN_CONSULT_DIRECT_REPORTS',
+        route: 'direct-reports',
+        title: '#LDS#Meus Subordinados'
+      });
       return menuObj;
     })
   }

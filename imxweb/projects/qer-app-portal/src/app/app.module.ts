@@ -36,6 +36,7 @@ import { MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateS
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MenuItensModule } from '../../../custom-open-consult/src/lib/menu-itens/menu-itens.module'
 import { LockUnlockIdentitiesModule } from 'projects/custom-open-consult/src/lib/lock-unlock-identities/lock-unlock-identities.module';
+import { CreateUserModule } from 'projects/custom-open-consult/src/lib/create-user/create-user.module';
 
 import {
   AuthenticationModule,
@@ -93,7 +94,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { PortalHyperviewService } from './hyperview/portal-hyperview.service';
-import { PortalHistoryService } from './portal-history.service';
+import { PortalHistoryService } from './portal-history.service';;
 
 
 export const HEADLESS_BASEHREF = '/headless';
@@ -160,6 +161,7 @@ export function getBaseHref(): string {
     QueueStatusComponent,
     MenuItensModule,
     LockUnlockIdentitiesModule,
+    CreateUserModule,
   ],
   providers: [
     { provide: 'environment', useValue: environment },

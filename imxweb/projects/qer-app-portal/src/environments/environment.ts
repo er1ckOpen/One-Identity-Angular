@@ -30,7 +30,7 @@
 
 export const environment = {
   production: false,
-  clientUrl: 'https://iamserver.iamdemo.com/APIServer',
+  clientUrl: 'https://oneimserver/ApiServer',
   appName: 'qer-app-portal',
   appVersion: '1.0.0',
 };

@@ -142,8 +142,11 @@ export class NewRequestAddToCartService {
       }
       try {
         this.copyShopInfoForDups(requestableProductForPerson);
+        console.log('[DEBUG] REQUESTABLE FOR PERSON: ',requestableProductForPerson);
         const items = requestableProductForPerson.filter((item) => !!item.UidITShopOrg?.length);
+        console.log('[DEBUG] ITEMS: ',items);
         const itemResult = await this.cartItemsProvider.addItems(items);
+        console.log('[DEBUG] ITEMS RESULT: ',itemResult);
         this.possibleItems = itemResult.possibleItems;
         this.savedItems = itemResult.savedItems;
       } finally {

@@ -38,6 +38,7 @@ import { MenuItensModule } from '../../../custom-open-consult/src/lib/menu-itens
 import { LockUnlockIdentitiesModule } from 'projects/custom-open-consult/src/lib/lock-unlock-identities/lock-unlock-identities.module';
 import { CreateUserModule } from 'projects/custom-open-consult/src/lib/create-user/create-user.module';
 import { MyDirectReportsModule } from 'projects/custom-open-consult/src/lib/my-direct-reports/my-direct-reports.module';
+import { RequestAccessModule} from 'projects/custom-open-consult/src/lib/request-access/request-access.module';
 
 import {
   AuthenticationModule,
@@ -164,6 +165,7 @@ export function getBaseHref(): string {
     LockUnlockIdentitiesModule,
     CreateUserModule,
     MyDirectReportsModule,
+    RequestAccessModule,
   ],
   providers: [
     { provide: 'environment', useValue: environment },

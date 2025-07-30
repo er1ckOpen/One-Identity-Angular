@@ -1,0 +1,7 @@
+@import "../../../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.scrollable-container {
+  max-height: 70vh;  /* ou ajuste conforme necessário */
+  overflow-y: auto;
+  padding-right: 8px; /* evita esconder scrollbar */
+}

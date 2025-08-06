@@ -1,177 +1,114 @@
-<div class="bg-light py-4 min-vh-100">
-  <div class="container-lg">
-    <div class="card shadow rounded-4 p-2 bg-white">
-      <form #form="ngForm" (ngSubmit)="handleSubmit()">
-        <!-- Linha dos selects -->
-        <div class="row mb-4">
-          <div class="col-md-6 mb-3 mb-md-0">
-            <label for="sistema" class="form-label fw-semibold">Selecione um sistema:</label>
-            <select
-              id="sistema"
-              required
-              class="form-select shadow-sm"
-              [(ngModel)]="selectedSystemUid"
-              name="sistema"
-              (change)="onSystemChange()"
-            >
-              <option *ngFor="let key of productKeys" [value]="products[key].uid">
-                {{ products[key].display }}
-              </option>
-            </select>
-          </div>
-          <div *ngIf="showUserSelect" class="col-md-6">
-            <label for="usuario" class="form-label fw-semibold">Selecione um usuário:</label>
-            <select id="usuario" class="form-select shadow-sm" [(ngModel)]="selectedUserUid" name="usuario">
-              <option *ngFor="let user of list_users" [value]="user.uid">
-                {{ user.display }}
-              </option>
-            </select>
-          </div>
-        </div>
+<div class="scrollable-container">
+<form #form="ngForm" (ngSubmit)="handleSubmit()" class="container mt-4">
 
-        <!-- Tabelas e Botões -->
-        <div class="row mb-4">
-          <!-- Tabela de Acessos -->
-          <div class="col-lg-6 mb-3 mb-lg-0">
-            <div class="card border-0 shadow-sm h-100">
-              <div class="card-header bg-primary text-white fw-semibold rounded-top-4">Acessos</div>
-              <div class="card-body p-0">
-                <table class="table table-bordered table-hover mb-0 align-middle">
-                  <thead class="table-light">
-                    <tr>
-                      <th style="width: 50px"></th>
-                      <th>Nome</th>
-                      <th>Sistema</th>
-                      <th>Descrição</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let access of paginatedAvailableAccesses()">
-                      <td class="text-center"><input type="checkbox" [(ngModel)]="access.selected" name="checkbox_{{ access.uid }}" /></td>
-                      <td>{{ access.display }}</td>
-                      <td>{{ selectedSystemDisplay }}</td>
-                      <td>{{ access.desc }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="card-footer bg-light border-0 py-2">
-                <div class="d-flex justify-content-center gap-2 align-items-center">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm"
-                    (click)="prevPage('available')"
-                    [disabled]="availablePage === 1"
-                  >
-                    &lt;
-                  </button>
-                  <span class="fw-semibold">Página {{ availablePage }}</span>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm"
-                    (click)="nextPage('available')"
-                    [disabled]="availablePage >= availableTotalPages()"
-                  >
-                    &gt;
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+  <!-- Select de Sistemas -->
+  <div class="mb-4">
+    <label for="sistema" class="form-label fw-bold">Selecione um sistema:</label>
+    <select id="sistema" required class="form-select" [(ngModel)]="selectedSystemUid" name="sistema" (change)="onSystemChange()">
+      <option *ngFor="let key of productKeys" [value]="products[key].uid">
+        {{ products[key].display }}
+      </option>
+    </select>
+  </div>
 
-          <!-- Botões entre tabelas -->
-          <div class="col-lg-1 d-flex flex-column align-items-center justify-content-center gap-2">
-            <button type="button" class="btn btn-primary btn-sm w-100" (click)="adicionar()">
-              <span class="d-none d-lg-inline">Adicionar →</span>
-              <span class="d-lg-none">+</span>
-            </button>
-            <button type="button" class="btn btn-secondary btn-sm w-100" (click)="cancelar()">
-              <span class="d-none d-lg-inline">← Cancelar</span>
-              <span class="d-lg-none">–</span>
-            </button>
-          </div>
+  <!-- Seletor de Usuários (somente para admin ou segurança) -->
+  <div *ngIf="showUserSelect" class="mb-4">
+   <label for="usuario" class="form-label fw-bold">Selecione um usuário:</label>
+   <select id="usuario" class="form-select" [(ngModel)]="selectedUserUid" name="usuario">
+     <option *ngFor="let user of list_users" [value]="user.uid">
+       {{ user.display }}
+     </option>
+   </select>
+  </div>
 
-          <!-- Tabela de Acessos Selecionados -->
-          <div class="col-lg-5">
-            <div class="card border-0 shadow-sm h-100">
-              <div class="card-header bg-success text-white fw-semibold rounded-top-4">Acessos Selecionados</div>
-              <div class="card-body p-0">
-                <table class="table table-bordered table-hover mb-0 align-middle">
-                  <thead class="table-light">
-                    <tr>
-                      <th style="width: 50px"></th>
-                      <th>Nome</th>
-                      <th>Sistema</th>
-                      <th>Descrição</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let access of paginatedSelectedAccesses()">
-                      <td class="text-center">
-                        <input type="checkbox" [(ngModel)]="access.selected" name="selectedCheckbox_{{ access.uid }}" />
-                      </td>
-                      <td>{{ access.display }}</td>
-                      <td>{{ selectedSystemDisplay }}</td>
-                      <td>{{ access.desc }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="card-footer bg-light border-0 py-2">
-                <div class="d-flex justify-content-center gap-2 align-items-center">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm"
-                    (click)="prevPage('selected')"
-                    [disabled]="selectedPage === 1"
-                  >
-                    &lt;
-                  </button>
-                  <span class="fw-semibold">Página {{ selectedPage }}</span>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm"
-                    (click)="nextPage('selected')"
-                    [disabled]="selectedPage >= selectedTotalPages()"
-                  >
-                    &gt;
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Campos de Data -->
-        <div class="row mb-4">
-          <div class="col-md-6">
-            <label for="dataInicio" class="form-label fw-semibold">Data de Início:</label>
-            <input type="date" id="dataInicio" name="dataInicio" class="form-control shadow-sm" [(ngModel)]="startDate" required />
-          </div>
-          <div class="col-md-6">
-            <label for="dataFim" class="form-label fw-semibold">Data de Fim:</label>
-            <input type="date" id="dataFim" name="dataFim" class="form-control shadow-sm" [(ngModel)]="endDate" required />
-          </div>
-        </div>
-
-        <!-- Justificativa -->
-        <div class="mb-4">
-          <label for="justificativa" class="form-label fw-semibold">Justificativa:</label>
-          <textarea
-            id="justificativa"
-            name="justificativa"
-            class="form-control shadow-sm"
-            required
-            [(ngModel)]="justificativa"
-            rows="3"
-          ></textarea>
-        </div>
-
-        <!-- Submit -->
-        <div class="text-end">
-          <button type="submit" class="btn btn-success btn-lg px-4">Enviar</button>
-        </div>
-      </form>
+  <!-- Tabela de Acessos -->
+  <div class="mb-3">
+    <h5 class="fw-bold">Acessos</h5>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>Sistema</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let access of paginatedAvailableAccesses()">
+          <td><input type="checkbox" [(ngModel)]="access.selected" name="checkbox_{{ access.uid }}"></td>
+          <td>{{ access.display }}</td>
+          <td>{{ selectedSystemDisplay }}</td>
+          <td>{{ access.desc }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Botões de paginação da tabela de Acessos -->
+    <div class="d-flex justify-content-center gap-2">
+      <button type="button" class="btn btn-outline-primary" (click)="prevPage('available')" [disabled]="availablePage === 1">&lt;</button>
+      <span>Página {{ availablePage }}</span>
+      <button type="button" class="btn btn-outline-primary" (click)="nextPage('available')" [disabled]="availablePage >= availableTotalPages()">&gt;</button>
     </div>
   </div>
+
+  <!-- Botões entre tabelas -->
+  <div class="d-flex justify-content-center mb-3 gap-3">
+    <button type="button" class="btn btn-primary" (click)="adicionar()">Adicionar →</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelar()">← Cancelar</button>
+  </div>
+
+  <!-- Tabela de Acessos Selecionados -->
+  <div class="mb-3">
+    <h5 class="fw-bold">Acessos Selecionados</h5>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>Sistema</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let access of paginatedSelectedAccesses()">
+          <td><input type="checkbox" [(ngModel)]="access.selected" name="selectedCheckbox_{{ access.uid }}"></td>
+          <td>{{ access.display }}</td>
+          <td>{{ selectedSystemDisplay }}</td>
+          <td>{{ access.desc }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Botões de paginação da tabela de Acessos Selecionados -->
+    <div class="d-flex justify-content-center gap-2">
+      <button type="button" class="btn btn-outline-primary" (click)="prevPage('selected')" [disabled]="selectedPage === 1">&lt;</button>
+      <span>Página {{ selectedPage }}</span>
+      <button type="button" class="btn btn-outline-primary" (click)="nextPage('selected')" [disabled]="selectedPage >= selectedTotalPages()">&gt;</button>
+    </div>
+  </div>
+
+  <!-- Campos de Data -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <label for="dataInicio" class="form-label fw-bold">Data de Início:</label>
+      <input type="date" id="dataInicio" name="dataInicio" class="form-control" [(ngModel)]="startDate" required>
+    </div>
+    <div class="col-md-6">
+      <label for="dataFim" class="form-label fw-bold">Data de Fim:</label>
+      <input type="date" id="dataFim" name="dataFim" class="form-control" [(ngModel)]="endDate" required>
+    </div>
+  </div>
+
+
+  <!-- Justificativa -->
+  <div class="mb-4">
+    <label for="justificativa" class="form-label fw-bold">Justificativa:</label>
+    <textarea id="justificativa" name="justificativa" class="form-control" required [(ngModel)]="justificativa" rows="4"></textarea>
+  </div>
+
+  <!-- Submit -->
+  <div class="text-end">
+    <button type="submit" class="btn btn-success">Enviar</button>
+  </div>
+
+</form>
 </div>

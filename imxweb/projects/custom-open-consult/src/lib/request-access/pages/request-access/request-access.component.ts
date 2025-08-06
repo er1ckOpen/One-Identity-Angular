@@ -3,6 +3,7 @@ import { QerApiService } from 'qer';
 import { UserModelService } from 'qer';
 import { QerPermissionsService } from 'qer';
 import { imx_SessionService as SessionService } from 'qbm';
+import { Router } from '@angular/router';
 
 interface Resource {
   uid?: string;
@@ -21,6 +22,7 @@ export class RequestAccessComponent implements OnInit {
     private readonly userService: UserModelService,
     private readonly permissionService: QerPermissionsService,
     private readonly session: SessionService,
+    private readonly router: Router,
   ) {}
 
   products: any = {};
@@ -206,6 +208,11 @@ export class RequestAccessComponent implements OnInit {
       cartItems.push(result);
     }
 
+     alert('Solicitação enviada com sucesso! Você será redirecionado para a tela inicial.');
+
+      setTimeout(() => {
+        this.router.navigate(['/dashboard']); // ou '/', ou qualquer rota que seja sua tela de início
+      }, 2000);
 
     if (this.showUserSelect) {
       console.log('[ENVIAR] Usuário selecionado:', this.selectedUserUid);
